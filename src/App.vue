@@ -1,60 +1,73 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+    <v-navigation-drawer v-model="drawer" absolute temporary app>
+      <v-container>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="title grey--text text--darken-2">
+              メニュー
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list nav dense>
+          <v-list-item v-for="navigation in navigations" :key="navigation.name" :to="navigation.path">
+            <v-list-item-icon>
+              <v-icon>{{ navigation.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ navigation.name }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-container>
+    </v-navigation-drawer>
+    <v-app-bar class="d-print-none" color="primary" dark dense app>
+      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>{{ page_title }}</v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+        <router-view></router-view>
     </v-content>
+
+    <v-footer class="d-print-none" color="primary" dark app>
+      <v-layout justify-center align-center>
+      ©︎ Copyright Seekers
+      </v-layout>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
   name: 'App',
-
-  components: {
-    HelloWorld,
+  data () {
+    return{
+      page_title: 'Tiny Tips',
+      drawer: false,
+      navigations: [
+        {name: 'Home', icon: 'mdi-home', path: '/', page_title: 'Tiny Tips'},
+        {name: '100マス計算', icon: 'mdi-calculator-variant', path: '/materials/box100'},
+        {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji25'},
+      ],
+    }
   },
-
-  data: () => ({
-    //
-  }),
+  props: [],
+  created: function() {
+    this.update_page_title();
+  },
+  updated: function() {
+    this.update_page_title();
+  },
+  computed: {
+  },
+  methods: {
+    update_page_title: function() {
+      let navigation = this.navigations.find(n => n.path == this.$route.path);
+      this.page_title = navigation.page_title || navigation.name;
+    }
+  },
 };
 </script>
