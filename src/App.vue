@@ -11,12 +11,12 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list nav dense>
-          <v-list-item v-for="navigation in navigations" :key="navigation.name" :to="navigation.path">
+          <v-list-item v-for="n in navigations" :key="n.name" :to="n.path" :title="n.description">
             <v-list-item-icon>
-              <v-icon>{{ navigation.icon }}</v-icon>
+              <v-icon>{{ n.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ navigation.name }}</v-list-item-title>
+              <v-list-item-title>{{ n.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -29,7 +29,7 @@
     </v-app-bar>
 
     <v-content>
-        <router-view></router-view>
+      <router-view></router-view>
     </v-content>
 
     <v-footer class="d-print-none" color="primary" dark app>
@@ -44,25 +44,23 @@
 export default {
   name: 'App',
   data () {
-    return{
+    return {
       pageTitle: 'Tiny Tips',
       drawer: false,
       navigations: [
-        {name: 'Home', icon: 'mdi-home', path: '/', pageTitle: 'Tiny Tips'},
-        {name: '100マス計算', icon: 'mdi-calculator-variant', path: '/materials/box100'},
-        {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji8'},
-        {name: '漢字書くのだ！（旧）', icon: 'mdi-pen', path: '/materials/kanji25'},
+        {name: 'Home', icon: 'mdi-home', path: '/', pageTitle: '全てのメニュー', description: '全てのメニューを表示します。'},
+        {name: '100マス計算', icon: 'mdi-calculator-variant', path: '/materials/box100', description: 'たし算、ひき算、かけ算。できるだけ早く、できるだけ正確に100マス計算。'},
+        {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji8', description: '漢字を丁寧に書く練習。'},
+        {name: '漢字書くのだ！（旧）', icon: 'mdi-pen', path: '/materials/kanji25', description: 'ボツ案'},
+        {name: '問い合わせ', icon: 'mdi-account-box', path: '/contact', description: '何か気になることがあればこちらまで。'},
       ],
     }
   },
-  props: [],
   created: function() {
     this.updatePageTitle();
   },
   updated: function() {
     this.updatePageTitle();
-  },
-  computed: {
   },
   methods: {
     updatePageTitle: function() {

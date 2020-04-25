@@ -278,13 +278,12 @@ export default {
 
 <style scoped>
 .box-container {
-  width: 880px;
-  min-width: 880px;
+  max-width: 880px;
 }
 .box-cell {
   padding: 12px;
-  width: 80px;
-  height: 50px;
+  width: 10%;
+  height: 3rem;
   text-align: center;
 }
 .display-answer .box-cell-answer {
@@ -299,10 +298,9 @@ export default {
     min-width: 480px;
   }
   .box-cell {
-    width: 40px;
-    height: 40px;
-    font-size: smaller;
     white-space: nowrap;
+    overflow: hidden;
+    font-size: smaller;
   }
 }
 @media print {
