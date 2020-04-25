@@ -24,7 +24,7 @@
     </v-navigation-drawer>
     <v-app-bar class="d-print-none" color="primary" dark dense app>
       <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{ page_title }}</v-toolbar-title>
+      <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
 
@@ -45,28 +45,29 @@ export default {
   name: 'App',
   data () {
     return{
-      page_title: 'Tiny Tips',
+      pageTitle: 'Tiny Tips',
       drawer: false,
       navigations: [
-        {name: 'Home', icon: 'mdi-home', path: '/', page_title: 'Tiny Tips'},
+        {name: 'Home', icon: 'mdi-home', path: '/', pageTitle: 'Tiny Tips'},
         {name: '100マス計算', icon: 'mdi-calculator-variant', path: '/materials/box100'},
-        {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji25'},
+        {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji8'},
+        {name: '漢字書くのだ！（旧）', icon: 'mdi-pen', path: '/materials/kanji25'},
       ],
     }
   },
   props: [],
   created: function() {
-    this.update_page_title();
+    this.updatePageTitle();
   },
   updated: function() {
-    this.update_page_title();
+    this.updatePageTitle();
   },
   computed: {
   },
   methods: {
-    update_page_title: function() {
+    updatePageTitle: function() {
       let navigation = this.navigations.find(n => n.path == this.$route.path);
-      this.page_title = navigation.page_title || navigation.name;
+      this.pageTitle = navigation.pageTitle || navigation.name;
     }
   },
 };

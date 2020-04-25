@@ -1,13 +1,13 @@
 <template>
-  <v-container class="box-container" :class="{'display-answer': display_answer }">
+  <v-container class="box-container" :class="{'display-answer': displayAnswer }">
     <v-alert
       class="d-print-none"
       border="top"
       colored-border
       type="info"
       elevation="2">
-      印刷してご利用ください。「解答を表示/非表示」ボタンから解答付き・なしを切り替えて印刷ができます。<br/>
-      スマホ対応はおって（印刷はできます）。
+      印刷してご利用ください。<br/>
+      「解答を表示/非表示」ボタンから解答付き・なしを切り替えて印刷ができます。
     </v-alert>
     <v-row
       class="flex-nowrap d-print-none"
@@ -18,13 +18,14 @@
       <v-spacer></v-spacer>
       <v-select
         class="ma-2"
-        v-model="sel_operator"
-        :items="sel_operator_options"
+        v-model="selOperator"
+        :items="selOperatorOptions"
         item-text="TEXT"
-        item-value="KEY">
+        item-value="KEY"
+        return-object>
       </v-select>
       <v-btn 
-        class="ma-2" @click="switch_operator">
+        class="ma-2" @click="switchOperator">
         にチャレンジ！
       </v-btn>
     </v-row>
@@ -44,7 +45,7 @@
             問題の印刷: {{ printed ? "済み" : "未" }} 
           </div>
           <div>
-            解答の印刷: {{ printed_with_answer ? "済み" : "未" }} 
+            解答の印刷: {{ printedWithAnswer ? "済み" : "未" }} 
           </div>
         </div>
       </v-col>
@@ -53,7 +54,7 @@
         <v-icon>mdi-printer</v-icon>
         印刷する
       </v-btn>
-      <v-btn class="ma-2 d-print-none" @click="toggle_answer" small>
+      <v-btn class="ma-2 d-print-none" @click="toggleAnswer" small>
         <v-icon>mdi-eye</v-icon>
         解答を表示/非表示
       </v-btn>
@@ -189,73 +190,73 @@ export default {
   data(){
     return{
         no: 0,
-        display_answer: false,
+        displayAnswer: false,
         rows: OPERATORS.ADDITION.ROW_NUMBERS,
         cols: OPERATORS.ADDITION.COL_NUMBERS,
         operator: OPERATORS.ADDITION,
-        sel_oprator: OPERATORS.ADDITION.KEY,
-        sel_operator_options: [OPERATORS.ADDITION, OPERATORS.ADDITION_EX, OPERATORS.SUBTRACT, OPERATORS.MULTIPLY],
+        selOperator: OPERATORS.ADDITION,
+        selOperatorOptions: [OPERATORS.ADDITION, OPERATORS.ADDITION_EX, OPERATORS.SUBTRACT, OPERATORS.MULTIPLY],
         printed: false,
-        printed_with_answer: false,
+        printedWithAnswer: false,
         url: null
     }
   },
   created: function(){
-    let url_params = this.$route.query;
+    let urlParams = this.$route.query;
     try {
-      if ('rows' in url_params) {
-        url_params.rows = url_params.rows.split(',').map(row => parseInt(row));
+      if ('rows' in urlParams) {
+        urlParams.rows = urlParams.rows.split(',').map(row => parseInt(row));
       } 
-      if ('cols' in url_params) {
-        url_params.cols = url_params.cols.split(',').map(col => parseInt(col));
+      if ('cols' in urlParams) {
+        urlParams.cols = urlParams.cols.split(',').map(col => parseInt(col));
       }
     } catch(e) {
       console.error('不正なURLパラメータ。' + e);
     }
-    this.operator = OPERATORS[url_params.operator] || OPERATORS.ADDITION;
-    this.sel_operator = this.operator.KEY;
-    this.rows = url_params.rows || this._randomize(this.operator.ROW_NUMBERS);
-    this.cols = url_params.cols || this._randomize(this.operator.COL_NUMBERS);
-    this.display_answer = ('answer' in url_params);
-    this.update_no();
-    this.update_url();
-    this.update_title();
+    this.operator = OPERATORS[urlParams.operator] || OPERATORS.ADDITION;
+    this.selOperator = this.operator;
+    this.rows = urlParams.rows || this._randomize(this.operator.ROW_NUMBERS);
+    this.cols = urlParams.cols || this._randomize(this.operator.COL_NUMBERS);
+    this.displayAnswer = ('answer' in urlParams);
+    this.updateNo();
+    this.updateUrl();
+    this.updateTitle();
   },
   methods: {
     print: function() {
       window.print();
-      this.display_answer? this.printed_with_answer = true : this.printed = true;
+      this.displayAnswer? this.printedWithAnswer = true : this.printed = true;
     },
-    toggle_answer: function() {
-      this.display_answer = !this.display_answer;
-      this.update_title();
+    toggleAnswer: function() {
+      this.displayAnswer = !this.displayAnswer;
+      this.updateTitle();
     },
-    switch_operator() {
-      if (this.operator.KEY == this.sel_operator) {
+    switchOperator() {
+      if (this.operator.KEY == this.selOperator.KEY) {
         return;
       }
-      this.operator = OPERATORS[this.sel_operator] || this.operator;
+      this.operator = this.selOperator || this.operator;
       this.refresh();
     },
     refresh: function() {
-      this.display_answer = false;
+      this.displayAnswer = false;
       this.printed = false;
-      this.printed_with_answer = false;
+      this.printedWithAnswer = false;
       this.rows = this._randomize(this.operator.ROW_NUMBERS);
       this.cols = this._randomize(this.operator.COL_NUMBERS);
-      this.update_no();
-      this.update_url();
-      this.update_title();
+      this.updateNo();
+      this.updateUrl();
+      this.updateTitle();
     },
-    update_no: function() {
+    updateNo: function() {
       this.no = new Date().getTime() - new Date(2020,3,1).getTime();
     },
-    update_url: function() {
-      let url_base = window.location.origin + this.$route.path;
-      this.url = url_base + '?rows=' + this.rows.toString() + '&cols=' + this.cols.toString() + '&operator=' + this.operator.KEY + '&answer';
+    updateUrl: function() {
+      let urlBase = window.location.origin + this.$route.path;
+      this.url = urlBase + '?rows=' + this.rows.toString() + '&cols=' + this.cols.toString() + '&operator=' + this.operator.KEY + '&answer';
     },
-    update_title: function() {
-      document.title = '100マス計算 | ' + this.operator.TEXT + (this.display_answer? ' 解答 ' : ' 問題 ') + this.no;
+    updateTitle: function() {
+      document.title = '100マス計算 | ' + this.operator.TEXT + (this.displayAnswer? ' 解答 ' : ' 問題 ') + this.no;
     },
     _randomize: function(array, opt_limit) {//shuffle by Fisher-Yates 
       for (let i = array.length - 1; i > 0; i--) {
