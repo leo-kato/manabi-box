@@ -280,7 +280,6 @@ export default {
 .kanji-cell .kanji{
   position: relative;
   top: -20px;
-  text-shadow:0 0 1px gray;
 }
 .kanji-detail-cell {
   height: 90px;
