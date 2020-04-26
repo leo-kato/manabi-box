@@ -282,7 +282,7 @@ export default {
 .kanji-detail-cell {
   height: 90px;
   font-size: smaller;
-  line-height: 2;
+  /* line-height: 2; */
   overflow: hidden;
 }
 @media screen and (max-width:480px){
@@ -315,7 +315,7 @@ export default {
     -webkit-print-color-adjust: exact;
   }
   .kanji-detail-cell .yomi {
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 }
 </style>
