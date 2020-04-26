@@ -41,20 +41,20 @@
 </template>
 
 <script>
+import MENU from '@/config/menu.js'
+
 export default {
   name: 'App',
   data () {
     return {
-      pageTitle: 'Tiny Tips',
+      pageTitle: 'まなびのはこ',
       drawer: false,
-      navigations: [
-        {name: 'Home', icon: 'mdi-home', path: '/', pageTitle: '全てのメニュー', description: '全てのメニューを表示します。'},
-        {name: '100マス計算', icon: 'mdi-calculator-variant', path: '/materials/box100', description: 'たし算、ひき算、かけ算。できるだけ早く、できるだけ正確に100マス計算。'},
-        {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji7', description: '漢字を丁寧に書く練習。'},
-        {name: '漢字なぞるのだ！', icon: 'mdi-pencil-box-multiple', path: '/materials/kanji21', description: '漢字をなぞって覚えよう。'},
-        //{name: '問い合わせ', icon: 'mdi-account-box', path: '/contact', description: '何か気になることがあればこちらまで。'},
-      ],
     }
+  },
+  computed: {
+    navigations: function() {
+      return MENU.GLOBAL_NAV;
+    },
   },
   created: function() {
     this.updatePageTitle();
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     updatePageTitle: function() {
-      let navigation = this.navigations.find(n => n.path == this.$route.path);
+      let navigation = MENU.FULL_LIST.find(n => n.path == this.$route.path);
       this.pageTitle = navigation.pageTitle || navigation.name;
     }
   },

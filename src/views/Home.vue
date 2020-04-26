@@ -1,5 +1,7 @@
 <template>
-  <Menu />
+  <v-content class="home-container">
+    <Menu />
+  </v-content>
 </template>
 
 <script>
@@ -12,3 +14,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home-container {
+  min-width: 100%;
+  min-height: 100%;
+}
+</style>
