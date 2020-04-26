@@ -17,7 +17,7 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-select
-        class="ma-2"
+        class="mx-2"
         v-model="selOperator"
         :items="selOperatorOptions"
         item-text="TEXT"
@@ -25,7 +25,7 @@
         return-object>
       </v-select>
       <v-btn 
-        class="ma-2" @click="switchOperator">
+        class="mx-2" @click="switchOperator">
         にチャレンジ！
       </v-btn>
     </v-row>
@@ -33,7 +33,7 @@
       class="flex-nowrap"
       align="center"
       justify="center">
-      <v-col cols="3">
+      <v-col>
         <div class="headline font-weight-bold">
           {{ operator.TEXT }}
         </div>
@@ -50,48 +50,39 @@
         </div>
       </v-col>
       <v-spacer></v-spacer>
-      <v-btn class="ma-2 d-print-none" @click="print" small>
+      <v-btn class="mx-2 d-print-none" @click="print" small>
         <v-icon>mdi-printer</v-icon>
         印刷する
       </v-btn>
-      <v-btn class="ma-2 d-print-none" @click="toggleAnswer" small>
+      <v-btn class="mx-2 d-print-none" @click="toggleAnswer" small>
         <v-icon>mdi-eye</v-icon>
         解答を表示/非表示
       </v-btn>
       <v-btn 
-        class="ma-2 d-print-none" @dblclick="refresh" small>
+        class="mx-2 d-print-none" @dblclick="refresh" small>
         <v-icon>mdi-refresh</v-icon>
         問題を交換(ダブルクリック)
       </v-btn>
       <qriously :value="url" :size="100" />
     </v-row>
-    <v-row>
-      <v-col>
-        <v-text-field
-          suffix="月">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          suffix="日">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          prefix="（"
-          suffix="分">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          suffix="秒）">
-        </v-text-field>
-      </v-col>
-      <v-col cols="2">
-        <v-text-field
-          suffix="点">
-        </v-text-field>
-      </v-col>
+    <v-row class="flex-nowrap">
+      <v-spacer></v-spacer>
+      <v-text-field
+        suffix="月">
+      </v-text-field>
+      <v-text-field
+        suffix="日">
+      </v-text-field>
+      <v-text-field
+        prefix="（"
+        suffix="分">
+      </v-text-field>
+      <v-text-field
+        suffix="秒）">
+      </v-text-field>
+      <v-text-field
+        suffix="点">
+      </v-text-field>
     </v-row>
     <v-row
       class="grey lighten-5">
@@ -249,7 +240,9 @@ export default {
       this.updateTitle();
     },
     updateNo: function() {
-      this.no = new Date().getTime() - new Date(2020,3,1).getTime();
+      let date = new Date();
+      let suffix = String(date.getTime() - new Date(date.getFullYear() - 1,0,1).getTime());
+      this.no = String(date.getFullYear() % 2000) + suffix;
     },
     updateUrl: function() {
       let urlBase = window.location.origin + this.$route.path;
@@ -278,10 +271,10 @@ export default {
 
 <style scoped>
 .box-container {
-  max-width: 880px;
+  max-width: 960px;
 }
 .box-cell {
-  padding: 12px;
+  padding-top: 0.8rem;
   width: 10%;
   height: 3rem;
   text-align: center;

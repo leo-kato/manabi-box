@@ -16,9 +16,9 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "materials_box100" */ '../views/materials/Box100.vue')
   },
   {
-    path: '/materials/kanji8',
-    name: 'Kanji8',
-    component: () => import(/* webpackChunkName: "materials_kanji8" */ '../views/materials/Kanji8.vue')
+    path: '/materials/kanji7',
+    name: 'Kanji7',
+    component: () => import(/* webpackChunkName: "materials_kanji8" */ '../views/materials/Kanji7.vue')
   },
   {
     path: '/materials/kanji25',

@@ -34,7 +34,7 @@
       class="flex-nowrap"
       align="center"
       justify="center">
-      <v-col cols="3">
+      <v-col cols="4">
         <div class="headline font-weight-bold">
           {{ grade.TEXT }}
         </div>
@@ -59,58 +59,55 @@
       </v-btn>
       <qriously :value="url" :size="100" />
     </v-row>
-    <v-row>
-      <v-col>
-        <v-text-field
-          suffix="月">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          suffix="日">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          prefix="（"
-          suffix="分">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          suffix="秒）">
-        </v-text-field>
-      </v-col>
-      <v-col cols="2">
-        <v-text-field
-          suffix="点">
-        </v-text-field>
-      </v-col>
+    <v-row class="flex-nowrap">
+      <v-spacer></v-spacer>
+      <v-text-field
+        suffix="月">
+      </v-text-field>
+      <v-text-field
+        suffix="日">
+      </v-text-field>
+      <v-text-field
+        prefix="（"
+        suffix="分">
+      </v-text-field>
+      <v-text-field
+        suffix="秒）">
+      </v-text-field>
+      <v-text-field
+        suffix="点">
+      </v-text-field>
     </v-row>
     <v-row 
       v-for="k in kanji"
       :key="k"
-      class="lighten-5"
+      class="flex-nowrap lighten-5"
       align="center"
       justify="start">
       <v-card
-        class="box-cell kanji-cell ma-2 pa-2"
+        class="box-cell kanji-model-cell flex-grow-0 flex-shrink-0 ma-2 pa-2"
         outlined
         tile>
-        <span class="kanji">{{ k }}</span>
-        <a :href="kanjiDetails[k].url">link</a>
+        <div class="kanji">
+          {{ k }}
+        </div>
       </v-card>
       <v-card
         v-for="n in 3"
         :key="n"
-        class="box-cell kanji-cell ma-2 pa-2"
+        class="box-cell kanji-cell flex-grow-0 flex-shrink-0 ma-2 pa-2"
+        :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
         outlined
         tile>
       </v-card>
       <v-card
-        class="box-cell kanji-detail-cell ma-2 pa-2"
+        class="box-cell kanji-detail-cell flex-grow-1 flex-shrink-1 ma-2 pa-2"
         outlined
         tile>
+        <span v-if="k in dictionary">
+          音読み：<span class="yomi">{{ dictionary[k].onyomi }}</span><br/>
+          訓読み：<span class="yomi">{{ dictionary[k].kunyomi }}</span>
+        </span>
       </v-card>
     </v-row>
   </v-container>
@@ -166,23 +163,13 @@ export default {
     return{
         no: 0,
         kanji: [],
+        dictionary: {},
         grade: GRADE.K6,
         selGrade: GRADE.K6,
         selGradeOptions: [GRADE.K1, GRADE.K2, GRADE.K3, GRADE.K4, GRADE.K5, GRADE.K6],
         printed: false,
-        url: null
-    }
-  },
-  computed: {
-    kanjiDetails: function() {
-      let details = {};
-      this.kanji.forEach(function(k) {
-        let detail = {};
-        detail.grade = Object.values(GRADE).find((value => value.KANJI.includes(k)));
-        detail.url = 'https://mojikiban.ipa.go.jp/mji/q?UCS=0x' + k.charCodeAt(0).toString(16).toUpperCase();
-        details[k] = detail;
-      });
-      return details;
+        url: null,
+        loading: true
     }
   },
   created: function(){
@@ -198,6 +185,7 @@ export default {
     this.grade = GRADE[urlParams.grade] || GRADE.K6;
     this.selGrade = this.grade;
     this.kanji = urlParams.kanji || this.draw(this.grade.KEY);
+    this.loadDictionary();
     this.updateNo();
     this.updateUrl();
     this.updateTitle();
@@ -217,12 +205,31 @@ export default {
     refresh: function() {
       this.printed = false;
       this.kanji = this.draw(this.grade.KEY);
+      this.loadDictionary();
       this.updateNo();
       this.updateUrl();
       this.updateTitle();
     },
+    loadDictionary: function() {
+      this.kanji.forEach((k) => {
+        let url = 'https://mojikiban.ipa.go.jp/mji/q?UCS=0x' + k.charCodeAt(0).toString(16).toUpperCase();
+        this.loading = true;
+        this.$axios.get(url).then(res => {
+          let detail = {
+            detail: res.data.results[0],
+            onyomi: (res.data.results[0]['読み']['音読み'] || ['ー']).join("、"),
+            kunyomi: (res.data.results[0]['読み']['訓読み'] || ['ー']).join("、"),
+          };
+          this.$set(this.dictionary, k, detail);
+        }).catch(e => {
+          console.log(e);
+        });
+      });
+    },
     updateNo: function() {
-      this.no = new Date().getTime() - new Date(2020,3,1).getTime();
+      let date = new Date();
+      let suffix = String(date.getTime() - new Date(date.getFullYear() - 1,0,1).getTime());
+      this.no = String(date.getFullYear() % 2000) + suffix;
     },
     updateUrl: function() {
       let urlBase = window.location.origin + this.$route.path;
@@ -233,7 +240,7 @@ export default {
     },
     draw: function(grade_key) {
       let grade = Object.values(GRADE).find((value => value.KEY == grade_key));
-      return this.random_draw(grade.KANJI.split(''), 8);
+      return this.random_draw(grade.KANJI.split(''), 7);
     },
     random_draw: function(array, opt_limit) {//shuffle by Fisher-Yates 
       for (let i = array.length - 1; i > 0; i--) {
@@ -242,7 +249,7 @@ export default {
         array[i] = array[r];
         array[r] = tmp;
       }
-      let limit = opt_limit || 8;
+      let limit = opt_limit || 7;
       if (array.length > limit) {
         return array.slice(1, limit + 1);
       }
@@ -255,37 +262,60 @@ export default {
 
 <style scoped>
 .box-container {
-  width: 880px;
-  min-width: 880px;
+  max-width: 960px;
 }
-.box-cell {
-  width: 100px;
-  height: 100px;
+.kanji-model-cell {
+  width: 90px;
+  height: 90px;
+  font-family: 'YuMincho';
+  font-size: 74px;
+}
+.kanji-model-cell .kanji{
+  position: relative;
+  top: -20px;
 }
 .kanji-cell {
-  color: #E57373;
-  position: relative;
-  background-image: url("/images/hougan_lightblue.png")
+  width: 90px;
+  height: 90px;
+	background-size: 100% auto;
 }
-.kanji {
-  position:absolute;
-  top: 0;
-  left: 0;
+.kanji-detail-cell {
+  height: 90px;
+  font-size: smaller;
+  line-height: 2;
+  overflow: hidden;
 }
 @media screen and (max-width:480px){
   .box-container {
     min-width: 480px;
   }
-  .box-cell {
-    width: 40px;
-    height: 40px;
-    font-size: smaller;
-    white-space: nowrap;
+  .kanji-model-cell {
+    width: 60px;
+    height: 60px;
+    font-family: 'YuMincho';
+    font-size: 44px;
+  }
+  .kanji-model-cell .kanji{
+    top: -12px;
+  }
+  .kanji-cell {
+    width: 60px;
+    height: 60px;
+  }
+  .kanji-detail-cell {
+    height: 60px;
+    font-size: x-small;
   }
 }
 @media print {
   .box-cell {
     border-color: black !important;
+  }
+  .kanji-cell {
+    -webkit-print-color-adjust: exact;
+  }
+  .kanji-detail-cell .yomi {
+    visibility: hidden;
   }
 }
 </style>
