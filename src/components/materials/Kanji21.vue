@@ -6,43 +6,39 @@
       colored-border
       type="info"
       elevation="2">
-      印刷してご利用ください。指定した学年の漢字を中心に、復習・先取りを少し混ぜて出力します。<br/>
-      スマホ対応はおって（印刷はできます）。<br/>
-      学年と対象の漢字：<a href="https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/syo/koku/001.htm">学習指導要領「生きる力」</a>より。
+      印刷してご利用ください。指定した学年の漢字を出力します。<br/>
+      学年と対象の漢字：<a href="https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/syo/koku/001.htm" target="_blank" rel="noopener">学習指導要領「生きる力」</a>より。<br/>
+      漢字の情報：<a href="https://mojikiban.ipa.go.jp/mji/" target="_blank" rel="noopener">IPA：MJ文字情報API</a>より。
     </v-alert>
     <v-row
       class="flex-nowrap d-print-none"
       align="center"
-      justify="end">
-      <v-col cols="5">
+      justify="end"
+      dense>
+      <v-col cols="7">
       </v-col>
       <v-spacer></v-spacer>
       <v-select
         class="ma-2"
-        v-model="sel_grade"
-        :items="sel_grade_options"
+        v-model="selGrade"
+        :items="selGradeOptions"
         item-text="TEXT"
-        item-value="KEY">
-      </v-select>
-      <v-select
-        class="ma-2"
-        v-model="sel_level"
-        :items="sel_level_options"
-        item-text="TEXT"
-        item-value="KEY">
+        item-value="KEY"
+        return-object>
       </v-select>
       <v-btn 
-        class="ma-2" @click="switch_difficulty">
+        class="ma-2" @click="switchGrade">
         にチャレンジ！
       </v-btn>
     </v-row>
     <v-row
       class="flex-nowrap"
       align="center"
-      justify="center">
-      <v-col cols="3">
+      justify="center"
+      dense>
+      <v-col cols="4">
         <div class="headline font-weight-bold">
-          {{ grade.TEXT }}{{ level.SUFFIX }}
+          {{ grade.TEXT }}
         </div>
         <div class="subtitle-1">
           No. {{ no }}
@@ -65,47 +61,38 @@
       </v-btn>
       <qriously :value="url" :size="120" />
     </v-row>
-    <v-row>
-      <v-col>
-        <v-text-field
-          suffix="月">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          suffix="日">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          prefix="（"
-          suffix="分">
-        </v-text-field>
-      </v-col>
-      <v-col>
-        <v-text-field
-          suffix="秒）">
-        </v-text-field>
-      </v-col>
-      <v-col cols="2">
-        <v-text-field
-          suffix="点">
-        </v-text-field>
-      </v-col>
+    <v-row class="flex-nowrap" dense>
+      <v-spacer></v-spacer>
+      <v-text-field
+        suffix="月">
+      </v-text-field>
+      <v-text-field
+        suffix="日">
+      </v-text-field>
+      <v-text-field
+        prefix="（"
+        suffix="分">
+      </v-text-field>
+      <v-text-field
+        suffix="秒）">
+      </v-text-field>
+      <v-text-field
+        suffix="点">
+      </v-text-field>
     </v-row>
-    <v-row
-      class="lighten-5"
-      align="center"
-      justify="start">
-        <v-card
-          v-for="k in kanji"
-          :key="k"
-          class="box-cell kanji-cell ma-2 pa-2"
-          outlined
-          :title="of_grade(k).TEXT"
-          tile>
-          <span class="kanji">{{ k }}</span>
-        </v-card>
+    <v-row 
+      class="lighten-5">
+      <v-card
+        v-for="k in kanji"
+        :key="k"
+        class="box-cell kanji-cell ma-2 pa-2"
+        :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
+        outlined
+        tile>
+        <div class="kanji">
+          {{ k }}
+        </div>
+      </v-card>
     </v-row>
   </v-container>
 </template>
@@ -155,117 +142,98 @@ const GRADE = {
     KANJI: '握扱依威為偉違緯維壱芋陰隠影鋭越援煙鉛縁汚押奥憶菓暇箇雅介戒皆壊較獲刈甘汗乾勧歓監鑑環含奇祈鬼幾輝儀戯詰却脚及丘朽巨距拠御凶叫狂況狭恐響驚仰駆屈掘繰恵傾継迎撃肩兼剣軒圏堅遣玄枯誇鼓互抗攻更恒荒香項稿豪込婚鎖彩歳載剤咲惨伺刺旨脂紫雌執芝斜煮釈寂朱狩趣需舟秀襲柔獣瞬旬巡盾召沼紹床称詳丈畳殖飾触振震侵浸寝慎薪尽陣尋吹是井姓征跡占扇鮮訴燥騒僧贈即俗耐替沢拓濁脱丹淡嘆端弾恥致遅蓄沖跳徴澄沈珍抵堤摘滴添殿吐途渡奴怒桃逃唐透到倒盗塔稲踏闘胴峠突鈍曇弐悩濃杯輩拍泊迫薄爆髪抜罰販般搬盤範繁彼疲被避尾微匹描浜敏怖浮普腐敷膚賦舞幅払噴柄壁捕舗峰抱砲忙坊肪傍冒帽凡盆慢漫妙眠矛霧娘茂猛網黙紋躍雄与誉溶腰踊謡翼雷頼絡欄離粒慮療隣涙隷齢麗暦劣烈恋露郎惑腕'
   }
 };
-const LEVEL = {
-  REVISE: {
-    KEY: 'REVISE',
-    TEXT: '復習',
-    SUFFIX: '（復習）'
-  },
-  MAIN: {
-    KEY: 'MAIN',
-    TEXT: 'その学年の漢字',
-    SUFFIX: ''
-  },
-  HARD: {
-    KEY: 'HARD',
-    TEXT: '先取り',
-    SUFFIX: '（先取り）'
-  },
-};
 export default {
   data(){
     return{
         no: 0,
         kanji: [],
+        dictionary: {},
         grade: GRADE.K6,
-        level: LEVEL.MAIN,
-        sel_grade: GRADE.K6,
-        sel_grade_options: [GRADE.K1, GRADE.K2, GRADE.K3, GRADE.K4, GRADE.K5, GRADE.K6],
-        sel_level: LEVEL.K6,
-        sel_level_options: [LEVEL.REVISE, LEVEL.MAIN, LEVEL.HARD],
+        selGrade: GRADE.K6,
+        selGradeOptions: [GRADE.K1, GRADE.K2, GRADE.K3, GRADE.K4, GRADE.K5, GRADE.K6],
         printed: false,
-        url: null
+        url: null,
+        loading: true
     }
   },
   created: function(){
-    let url_params = this.$route.query;
+    let urlParams = this.$route.query;
     try {
-      if ('kanji' in url_params) {
-        url_params.kanji = url_params.kanji.split('');
+      if ('kanji' in urlParams) {
+        urlParams.kanji = urlParams.kanji.split('');
       } 
     } catch(e) {
-      console.log(url_params);
+      console.log(urlParams);
       console.error('不正なURLパラメータ。' + e);
     }
-    this.grade = GRADE[url_params.grade] || GRADE.K6;
-    this.level = LEVEL[url_params.level] || LEVEL.MAIN;
-    this.sel_grade = this.grade.KEY;
-    this.sel_level = this.level.KEY;
-    this.kanji = url_params.kanji || this.draw(this.grade.KEY, this.level.KEY);
-    this.update_no();
-    this.update_url();
-    this.update_title();
+    this.grade = GRADE[urlParams.grade] || GRADE.K6;
+    this.selGrade = this.grade;
+    this.kanji = urlParams.kanji || this.draw(this.grade.KEY);
+    this.loadDictionary();
+    this.updateNo();
+    this.updateUrl();
+    this.updateTitle();
   },
   methods: {
     print: function() {
       window.print();
       this.printed = true;
     },
-    switch_difficulty() {
-      if (this.grade.KEY == this.sel_grade && this.level.KEY == this.sel_level) {
+    switchGrade() {
+      if (this.grade.KEY == this.selGrade.KEY) {
         return;
       }
-      this.grade = GRADE[this.sel_grade] || this.grade;
-      this.level = LEVEL[this.sel_level] || this.level;
+      this.grade = this.selGrade || this.grade;
       this.refresh();
     },
     refresh: function() {
       this.printed = false;
-      this.kanji = this.draw(this.grade.KEY, this.level.KEY);
-      this.update_no();
-      this.update_url();
-      this.update_title();
+      this.kanji = this.draw(this.grade.KEY);
+      this.loadDictionary();
+      this.updateNo();
+      this.updateUrl();
+      this.updateTitle();
     },
-    of_grade: function(k) {
-      let grade = Object.values(GRADE).find((value => value.KANJI.includes(k)));
-      return grade;
+    loadDictionary: function() {
+      this.kanji.forEach((k) => {
+        let url = 'https://mojikiban.ipa.go.jp/mji/q?UCS=0x' + k.charCodeAt(0).toString(16).toUpperCase();
+        this.loading = true;
+        this.$axios.get(url).then(res => {
+          let detail = {
+            detail: res.data.results[0],
+            onyomi: (res.data.results[0]['読み']['音読み'] || ['ー']).join("、"),
+            kunyomi: (res.data.results[0]['読み']['訓読み'] || ['ー']).join("、"),
+          };
+          this.$set(this.dictionary, k, detail);
+        }).catch(e => {
+          console.log(e);
+        });
+      });
     },
-    update_no: function() {
-      this.no = new Date().getTime() - new Date(2020,3,1).getTime();
+    updateNo: function() {
+      let date = new Date();
+      let suffix = String(date.getTime() - new Date(date.getFullYear() - 1,0,1).getTime());
+      this.no = String(date.getFullYear() % 2000) + suffix;
     },
-    update_url: function() {
-      let url_base = window.location.origin + this.$route.path;
-      this.url = url_base + '?grade=' + this.grade.KEY + '&level=' + this.level.KEY + '&kanji=' + encodeURI(this.kanji.join(''));
+    updateUrl: function() {
+      let urlBase = window.location.origin + this.$route.path;
+      this.url = urlBase + '?grade=' + this.grade.KEY + '&kanji=' + encodeURI(this.kanji.join(''));
     },
-    update_title: function() {
-      document.title = '漢字書くのだ！ | ' + this.grade.TEXT + this.level.SUFFIX + ' ' + this.no;
+    updateTitle: function() {
+      document.title = '漢字書くのだ！ | ' + this.grade.TEXT + ' ' + this.no;
     },
-    draw: function(grade_key, level_key) {
+    draw: function(grade_key) {
       let grade = Object.values(GRADE).find((value => value.KEY == grade_key));
-      let level = Object.values(LEVEL).find((value => value.KEY == level_key));
-      if (level.KEY === LEVEL.MAIN.KEY) {
-        return this._random_draw(grade.KANJI.split(''), 25);
-      } else if (level.KEY == LEVEL.REVISE.KEY) {
-        if (grade.GRADE === 1) {
-          return this._random_draw(grade.KANJI.split(''), 25);
-        }
-        let grade_lower = Object.values(GRADE).find((value => value.GRADE + 1 ==  grade.GRADE));
-        let kanji = this._random_draw(grade.KANJI.split(''), 15).concat(this._random_draw(grade_lower.KANJI.split(''), 10));
-        return this._random_draw(kanji);
-      } else if (level.KEY == LEVEL.HARD.KEY) {
-        let grade_upper = Object.values(GRADE).find((value => value.GRADE ==  grade.GRADE + 1));
-        let kanji = this._random_draw(grade.KANJI.split(''), 15).concat(this._random_draw(grade_upper.KANJI.split(''), 10));
-        return this._random_draw(kanji);
-      }
+      return this.random_draw(grade.KANJI.split(''));
     },
-    _random_draw: function(array, opt_limit) {//shuffle by Fisher-Yates 
+    random_draw: function(array, opt_limit) {//shuffle by Fisher-Yates 
       for (let i = array.length - 1; i > 0; i--) {
         let r = Math.floor(Math.random() * (i + 1));
         let tmp = array[i];
         array[i] = array[r];
         array[r] = tmp;
       }
-      let limit = opt_limit || 25;
+      let limit = opt_limit || 21;
       if (array.length > limit) {
         return array.slice(1, limit + 1);
       }
@@ -278,37 +246,50 @@ export default {
 
 <style scoped>
 .box-container {
-  width: 880px;
-  min-width: 880px;
+  max-width: 960px;
 }
 .box-cell {
-  width: 80px;
-  height: 80px;
+  border-color: black !important;
 }
 .kanji-cell {
-  color: #E57373;
-  position: relative;
-  background-image: url("/images/hougan_lightblue.png")
+  width: 90px;
+  height: 90px;
+  font-family: 'YuMincho';
+  font-size: 74px;
+	background-size: 100% auto;
 }
-.kanji {
-  position:absolute;
-  top: 0;
-  left: 0;
+.kanji-cell .kanji{
+  position: relative;
+  top: -20px;
+  color: lightgray;
+}
+.kanji-detail-cell {
+  height: 90px;
+  font-size: smaller;
+  /* line-height: 2; */
+  overflow: hidden;
 }
 @media screen and (max-width:480px){
   .box-container {
     min-width: 480px;
   }
-  .box-cell {
-    width: 40px;
-    height: 40px;
-    font-size: smaller;
-    white-space: nowrap;
+  .kanji-cell {
+    width: 60px;
+    height: 60px;
+    font-family: 'YuMincho';
+    font-size: 44px;
+  }
+  .kanji-cell .kanji{
+    top: -12px;
+  }
+  .kanji-detail-cell {
+    height: 60px;
+    font-size: x-small;
   }
 }
 @media print {
-  .box-cell {
-    border-color: black !important;
+  .kanji-cell {
+    -webkit-print-color-adjust: exact;
   }
 }
 </style>

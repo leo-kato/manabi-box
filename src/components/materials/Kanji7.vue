@@ -13,7 +13,8 @@
     <v-row
       class="flex-nowrap d-print-none"
       align="center"
-      justify="end">
+      justify="end"
+      dense>
       <v-col cols="7">
       </v-col>
       <v-spacer></v-spacer>
@@ -33,7 +34,8 @@
     <v-row
       class="flex-nowrap"
       align="center"
-      justify="center">
+      justify="center"
+      dense>
       <v-col cols="4">
         <div class="headline font-weight-bold">
           {{ grade.TEXT }}
@@ -59,7 +61,7 @@
       </v-btn>
       <qriously :value="url" :size="100" />
     </v-row>
-    <v-row class="flex-nowrap">
+    <v-row class="flex-nowrap" dense>
       <v-spacer></v-spacer>
       <v-text-field
         suffix="月">
@@ -85,7 +87,8 @@
       align="center"
       justify="start">
       <v-card
-        class="box-cell kanji-model-cell flex-grow-0 flex-shrink-0 ma-2 pa-2"
+        class="box-cell kanji-cell flex-grow-0 flex-shrink-0 ma-2 pa-2"
+        :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
         outlined
         tile>
         <div class="kanji">
@@ -240,7 +243,7 @@ export default {
     },
     draw: function(grade_key) {
       let grade = Object.values(GRADE).find((value => value.KEY == grade_key));
-      return this.random_draw(grade.KANJI.split(''), 7);
+      return this.random_draw(grade.KANJI.split(''));
     },
     random_draw: function(array, opt_limit) {//shuffle by Fisher-Yates 
       for (let i = array.length - 1; i > 0; i--) {
@@ -264,20 +267,20 @@ export default {
 .box-container {
   max-width: 960px;
 }
-.kanji-model-cell {
-  width: 90px;
-  height: 90px;
-  font-family: 'YuMincho';
-  font-size: 74px;
-}
-.kanji-model-cell .kanji{
-  position: relative;
-  top: -20px;
+.box-cell {
+  border-color: black !important;
 }
 .kanji-cell {
   width: 90px;
   height: 90px;
+  font-family: 'YuMincho';
+  font-size: 74px;
 	background-size: 100% auto;
+}
+.kanji-cell .kanji{
+  position: relative;
+  top: -20px;
+  text-shadow:0 0 1px gray;
 }
 .kanji-detail-cell {
   height: 90px;
@@ -289,18 +292,14 @@ export default {
   .box-container {
     min-width: 480px;
   }
-  .kanji-model-cell {
+  .kanji-cell {
     width: 60px;
     height: 60px;
     font-family: 'YuMincho';
     font-size: 44px;
   }
-  .kanji-model-cell .kanji{
+  .kanji-cell .kanji{
     top: -12px;
-  }
-  .kanji-cell {
-    width: 60px;
-    height: 60px;
   }
   .kanji-detail-cell {
     height: 60px;
@@ -308,9 +307,6 @@ export default {
   }
 }
 @media print {
-  .box-cell {
-    border-color: black !important;
-  }
   .kanji-cell {
     -webkit-print-color-adjust: exact;
   }

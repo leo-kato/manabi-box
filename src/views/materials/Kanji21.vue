@@ -1,13 +1,13 @@
 <template>
-  <Kanji25 />
+  <Kanji21 />
 </template>
 
 <script>
-import Kanji25 from '@/components/materials/Kanji25.vue'
+import Kanji21 from '@/components/materials/Kanji21.vue'
 
 export default {
   components: {
-    Kanji25
+    Kanji21
   }
 }
 </script>

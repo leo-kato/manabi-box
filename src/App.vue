@@ -51,8 +51,8 @@ export default {
         {name: 'Home', icon: 'mdi-home', path: '/', pageTitle: '全てのメニュー', description: '全てのメニューを表示します。'},
         {name: '100マス計算', icon: 'mdi-calculator-variant', path: '/materials/box100', description: 'たし算、ひき算、かけ算。できるだけ早く、できるだけ正確に100マス計算。'},
         {name: '漢字書くのだ！', icon: 'mdi-pen', path: '/materials/kanji7', description: '漢字を丁寧に書く練習。'},
-        {name: '漢字書くのだ！（旧）', icon: 'mdi-pen', path: '/materials/kanji25', description: 'ボツ案'},
-        {name: '問い合わせ', icon: 'mdi-account-box', path: '/contact', description: '何か気になることがあればこちらまで。'},
+        {name: '漢字なぞるのだ！', icon: 'mdi-pencil-box-multiple', path: '/materials/kanji21', description: '漢字をなぞって覚えよう。'},
+        //{name: '問い合わせ', icon: 'mdi-account-box', path: '/contact', description: '何か気になることがあればこちらまで。'},
       ],
     }
   },

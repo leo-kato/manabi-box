@@ -13,7 +13,8 @@
       class="flex-nowrap d-print-none"
       align="center"
       justify="end">
-      <v-col cols="7">
+      <v-col cols="7"
+      dense>
       </v-col>
       <v-spacer></v-spacer>
       <v-select
@@ -32,7 +33,8 @@
     <v-row
       class="flex-nowrap"
       align="center"
-      justify="center">
+      justify="center"
+      dense>
       <v-col>
         <div class="headline font-weight-bold">
           {{ operator.TEXT }}
@@ -65,7 +67,7 @@
       </v-btn>
       <qriously :value="url" :size="100" />
     </v-row>
-    <v-row class="flex-nowrap">
+    <v-row class="flex-nowrap" dense>
       <v-spacer></v-spacer>
       <v-text-field
         suffix="月">
