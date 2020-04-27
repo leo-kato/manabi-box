@@ -220,7 +220,7 @@ export default {
       this.url = urlBase + '?grade=' + this.grade.KEY + '&kanji=' + encodeURI(this.kanji.join(''));
     },
     updateTitle: function() {
-      document.title = '漢字書くのだ！ | ' + this.grade.TEXT + ' ' + this.no;
+      document.title = '漢字なぞるのだ！ | ' + this.grade.TEXT + ' ' + this.no;
     },
     draw: function(grade_key) {
       let grade = Object.values(GRADE).find((value => value.KEY == grade_key));
