@@ -11,32 +11,10 @@
       漢字の情報：<a href="https://mojikiban.ipa.go.jp/mji/" target="_blank" rel="noopener">IPA：MJ文字情報API</a>より。
     </v-alert>
     <v-row
-      class="flex-nowrap d-print-none"
       align="center"
-      justify="end"
+      justify="start"
       dense>
-      <v-col cols="7">
-      </v-col>
-      <v-spacer></v-spacer>
-      <v-select
-        class="ma-2"
-        v-model="selGrade"
-        :items="selGradeOptions"
-        item-text="TEXT"
-        item-value="KEY"
-        return-object>
-      </v-select>
-      <v-btn 
-        class="ma-2" @click="switchGrade">
-        にチャレンジ！
-      </v-btn>
-    </v-row>
-    <v-row
-      class="flex-nowrap"
-      align="center"
-      justify="center"
-      dense>
-      <v-col cols="4">
+      <v-col class="mr-auto">
         <div class="headline font-weight-bold">
           {{ grade.TEXT }}
         </div>
@@ -49,36 +27,64 @@
           </div>
         </div>
       </v-col>
-      <v-spacer></v-spacer>
-      <v-btn class="ma-2 d-print-none" @click="print" small>
-        <v-icon>mdi-printer</v-icon>
-        印刷する
-      </v-btn>
-      <v-btn 
-        class="ma-2 d-print-none" @dblclick="refresh" small>
-        <v-icon>mdi-refresh</v-icon>
-        漢字を交換(ダブルクリック)
-      </v-btn>
-      <qriously :value="url" :size="120" />
+      <v-col class="d-print-none">
+        <v-row class="ml-auto " dense>
+          <v-col class="d-flex justify-end align-center">
+            <v-select
+              class="mx-2"
+              v-model="selGrade"
+              :items="selGradeOptions"
+              item-text="TEXT"
+              item-value="KEY"
+              return-object>
+            </v-select>
+            <v-btn 
+              class="mx-2" @click="switchGrade" small>
+              にチャレンジ！
+            </v-btn>
+          </v-col>
+          <v-col class="d-flex justify-end align-center">
+            <v-btn class="mx-2" @click="print" small>
+              <v-icon>mdi-printer</v-icon>
+              印刷する
+            </v-btn>
+            <v-btn 
+              class="mx-2" @dblclick="refresh" small>
+              <v-icon>mdi-refresh</v-icon>
+              漢字を交換(ダブルクリック)
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col class="ml-auto flex-grow-0">
+        <qriously :value="url" :size="120" />
+      </v-col>
     </v-row>
-    <v-row class="flex-nowrap" dense>
+    <v-row class="ml-auto " 
+      justify="end"
+      dense>
       <v-spacer></v-spacer>
-      <v-text-field
-        suffix="月">
-      </v-text-field>
-      <v-text-field
-        suffix="日">
-      </v-text-field>
-      <v-text-field
-        prefix="（"
-        suffix="分">
-      </v-text-field>
-      <v-text-field
-        suffix="秒）">
-      </v-text-field>
-      <v-text-field
-        suffix="点">
-      </v-text-field>
+      <v-col class="d-flex">
+        <v-text-field
+          suffix="月">
+        </v-text-field>
+        <v-text-field
+          suffix="日">
+        </v-text-field>
+      </v-col>
+      <v-col class="d-flex">
+        <v-text-field
+          suffix="分">
+        </v-text-field>
+        <v-text-field
+          suffix="秒">
+        </v-text-field>
+      </v-col>
+      <v-col class="d-flex">
+        <v-text-field
+          suffix="点">
+        </v-text-field>
+      </v-col>
     </v-row>
     <v-row 
       class="lighten-5">
@@ -261,30 +267,18 @@ export default {
 .kanji-cell .kanji{
   position: relative;
   top: -20px;
+  left: -1px;
   color: lightgray;
 }
-.kanji-detail-cell {
-  height: 90px;
-  font-size: smaller;
-  /* line-height: 2; */
-  overflow: hidden;
-}
 @media screen and (max-width:480px){
-  .box-container {
-    min-width: 480px;
-  }
   .kanji-cell {
     width: 60px;
     height: 60px;
-    font-family: 'YuMincho';
     font-size: 44px;
   }
   .kanji-cell .kanji{
     top: -12px;
-  }
-  .kanji-detail-cell {
-    height: 60px;
-    font-size: x-small;
+    left: -1px;
   }
 }
 @media print {

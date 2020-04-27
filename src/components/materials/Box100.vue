@@ -10,32 +10,10 @@
       「解答を表示/非表示」ボタンから解答付き・なしを切り替えて印刷ができます。
     </v-alert>
     <v-row
-      class="flex-nowrap d-print-none"
       align="center"
-      justify="end">
-      <v-col cols="7"
+      justify="start"
       dense>
-      </v-col>
-      <v-spacer></v-spacer>
-      <v-select
-        class="mx-2"
-        v-model="selOperator"
-        :items="selOperatorOptions"
-        item-text="TEXT"
-        item-value="KEY"
-        return-object>
-      </v-select>
-      <v-btn 
-        class="mx-2" @click="switchOperator">
-        にチャレンジ！
-      </v-btn>
-    </v-row>
-    <v-row
-      class="flex-nowrap"
-      align="center"
-      justify="center"
-      dense>
-      <v-col>
+      <v-col class="mr-auto">
         <div class="headline font-weight-bold">
           {{ operator.TEXT }}
         </div>
@@ -51,40 +29,70 @@
           </div>
         </div>
       </v-col>
-      <v-spacer></v-spacer>
-      <v-btn class="mx-2 d-print-none" @click="print" small>
-        <v-icon>mdi-printer</v-icon>
-        印刷する
-      </v-btn>
-      <v-btn class="mx-2 d-print-none" @click="toggleAnswer" small>
-        <v-icon>mdi-eye</v-icon>
-        解答を表示/非表示
-      </v-btn>
-      <v-btn 
-        class="mx-2 d-print-none" @dblclick="refresh" small>
-        <v-icon>mdi-refresh</v-icon>
-        問題を交換(ダブルクリック)
-      </v-btn>
-      <qriously :value="url" :size="100" />
+      <v-col class="d-print-none">
+        <v-row class="ml-auto " dense>
+          <v-col class="d-flex justify-end align-center">
+            <v-select
+              class="mx-2"
+              v-model="selOperator"
+              :items="selOperatorOptions"
+              item-text="TEXT"
+              item-value="KEY"
+              return-object>
+            </v-select>
+            <v-btn 
+              class="ma-2" @click="switchOperator" small>
+              にチャレンジ！
+            </v-btn>
+          </v-col>
+          <v-col class="d-print-none d-flex justify-end align-center">
+            <v-btn class="mx-2" @click="print" small>
+              <v-icon>mdi-printer</v-icon>
+              印刷する
+            </v-btn>
+            <v-btn class="mx-2" @click="toggleAnswer" small>
+              <v-icon>mdi-eye</v-icon>
+              解答を表示/非表示
+            </v-btn>
+            <v-btn 
+              class="mx-2" @click="refresh" small>
+              <v-icon>mdi-refresh</v-icon>
+              <div>
+                問題を交換
+              </div>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col class="ml-auto flex-grow-0 align-center">
+        <qriously :value="url" :size="100" />
+      </v-col>
     </v-row>
-    <v-row class="flex-nowrap" dense>
+    <v-row class="ml-auto " 
+      justify="end"
+      dense>
       <v-spacer></v-spacer>
-      <v-text-field
-        suffix="月">
-      </v-text-field>
-      <v-text-field
-        suffix="日">
-      </v-text-field>
-      <v-text-field
-        prefix="（"
-        suffix="分">
-      </v-text-field>
-      <v-text-field
-        suffix="秒）">
-      </v-text-field>
-      <v-text-field
-        suffix="点">
-      </v-text-field>
+      <v-col class="d-flex">
+        <v-text-field
+          suffix="月">
+        </v-text-field>
+        <v-text-field
+          suffix="日">
+        </v-text-field>
+      </v-col>
+      <v-col class="d-flex">
+        <v-text-field
+          suffix="分">
+        </v-text-field>
+        <v-text-field
+          suffix="秒">
+        </v-text-field>
+      </v-col>
+      <v-col class="d-flex">
+        <v-text-field
+          suffix="点">
+        </v-text-field>
+      </v-col>
     </v-row>
     <v-row
       class="grey lighten-5">
@@ -278,8 +286,11 @@ export default {
 .box-cell {
   padding-top: 0.8rem;
   width: 10%;
+  max-width: 90px;
   height: 3rem;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .display-answer .box-cell-answer {
   display: block;
@@ -293,8 +304,6 @@ export default {
     min-width: 480px;
   }
   .box-cell {
-    white-space: nowrap;
-    overflow: hidden;
     font-size: smaller;
   }
 }
