@@ -23,7 +23,10 @@
       </v-container>
     </v-navigation-drawer>
     <v-app-bar class="d-print-none" color="primary" dark dense app>
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="d-none d-sm-flex" @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-btn v-if="this.$route.path != '/'" class="d-flex d-sm-none" to="/" icon>   
+         <v-icon>mdi-menu</v-icon>
+      </v-btn>
       <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -66,7 +69,7 @@ export default {
     updatePageTitle: function() {
       let navigation = MENU.FULL_LIST.find(n => n.path == this.$route.path);
       this.pageTitle = navigation.pageTitle || navigation.name;
-    }
+    },
   },
 };
 </script>
