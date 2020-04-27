@@ -1,7 +1,7 @@
 <template>
-  <v-content class="home-container">
+  <v-container class="home-container">
     <Menu />
-  </v-content>
+  </v-container>
 </template>
 
 <script>
@@ -11,6 +11,9 @@ export default {
   name: 'Home',
   components: {
     Menu
+  },
+  created: function() {
+    document.title = 'うちトレ';
   }
 }
 </script>

@@ -50,7 +50,7 @@ export default {
   name: 'App',
   data () {
     return {
-      pageTitle: 'まなびのはこ',
+      pageTitle2: 'うちトレ',
       drawer: false,
     }
   },
@@ -58,17 +58,9 @@ export default {
     navigations: function() {
       return MENU.GLOBAL_NAV;
     },
-  },
-  created: function() {
-    this.updatePageTitle();
-  },
-  updated: function() {
-    this.updatePageTitle();
-  },
-  methods: {
-    updatePageTitle: function() {
+    pageTitle: function() {
       let navigation = MENU.FULL_LIST.find(n => n.path == this.$route.path);
-      this.pageTitle = navigation.pageTitle || navigation.name;
+      return navigation.pageTitle || navigation.name;
     },
   },
 };
