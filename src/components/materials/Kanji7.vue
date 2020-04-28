@@ -93,7 +93,7 @@
       align="center"
       justify="start"
       dense>
-      <v-col class="d-flex">
+      <v-col class="d-flex flex-grow-0 ">
         <v-card
           class="box-cell kanji-cell flex-grow-0 flex-shrink-0 mx-2 pa-2"
           :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
