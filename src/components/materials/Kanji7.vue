@@ -89,13 +89,13 @@
     <v-row 
       v-for="k in kanji"
       :key="k"
-      class="lighten-5"
+      class="lighten-5 my-1"
       align="center"
       justify="start"
       dense>
       <v-col class="d-flex">
         <v-card
-          class="box-cell kanji-cell flex-grow-0 flex-shrink-0 ma-2 pa-2"
+          class="box-cell kanji-cell flex-grow-0 flex-shrink-0 mx-2 pa-2"
           :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
           outlined
           tile>
@@ -106,7 +106,7 @@
         <v-card
           v-for="n in 3"
           :key="n"
-          class="box-cell kanji-cell flex-grow-0 flex-shrink-0 ma-2 pa-2"
+          class="box-cell kanji-cell flex-grow-0 flex-shrink-0 mx-2 pa-2"
           :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
           outlined
           tile>
@@ -114,7 +114,7 @@
       </v-col>
       <v-col>
         <v-card
-          class="box-cell kanji-detail-cell flex-grow-1 flex-shrink-1 ma-2 pa-2"
+          class="box-cell kanji-detail-cell flex-grow-1 flex-shrink-1 mx-2 pa-2"
           outlined
           tile>
           <span v-if="k in dictionary">
@@ -282,20 +282,20 @@ export default {
   border-color: black !important;
 }
 .kanji-cell {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   font-family: 'YuMincho';
-  font-size: 74px;
+  font-size: 64px;
 	background-size: 100% auto;
 }
 .kanji-cell .kanji{
   position: relative;
-  top: -20px;
-  left: -1px;
+  top: -18px;
+  left: 0;
 }
 .kanji-detail-cell {
-  height: 90px;
-  font-size: smaller;
+  height: 80px;
+  font-size: x-small;
   overflow: hidden;
 }
 @media screen and (max-width:480px){

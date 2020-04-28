@@ -31,7 +31,7 @@
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-content>
+    <v-content class="main-content">
       <router-view></router-view>
     </v-content>
 
@@ -65,3 +65,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media print {
+  .main-content {
+    padding-top: 0px !important;
+  }
+}
+</style>
