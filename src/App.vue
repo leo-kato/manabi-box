@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" absolute temporary app>
+    <v-navigation-drawer v-model="drawer" fixed temporary app>
       <v-container>
         <v-list-item>
           <v-list-item-content>
@@ -35,9 +35,9 @@
       <router-view></router-view>
     </v-content>
 
-    <v-footer class="d-print-none" color="primary" dark app>
+    <v-footer class="d-print-none" color="primary" dark padless app>
       <v-layout justify-center align-center>
-      ©︎ Copyright Seekers
+        ©︎ Copyright Seekers
       </v-layout>
     </v-footer>
   </v-app>
