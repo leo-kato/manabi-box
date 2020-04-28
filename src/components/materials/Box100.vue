@@ -187,6 +187,9 @@ const OPERATORS = {
     }
   },
 };
+const COOKIE_KEYS = {
+  OPERATOR: 'materials.Box100.operator',
+};
 export default {
   data(){
     return{
@@ -214,7 +217,8 @@ export default {
     } catch(e) {
       console.error('不正なURLパラメータ。' + e);
     }
-    this.operator = OPERATORS[urlParams.operator] || OPERATORS.ADDITION;
+    let cookieOperator = this.$cookies.get(COOKIE_KEYS.OPERATOR);
+    this.operator = OPERATORS[urlParams.operator] || OPERATORS[cookieOperator] || OPERATORS.ADDITION;
     this.selOperator = this.operator;
     this.rows = urlParams.rows || this._randomize(this.operator.ROW_NUMBERS);
     this.cols = urlParams.cols || this._randomize(this.operator.COL_NUMBERS);
@@ -222,6 +226,7 @@ export default {
     this.updateNo();
     this.updateUrl();
     this.updateTitle();
+    this.$cookies.set(COOKIE_KEYS.OPERATOR, this.operator.KEY);
   },
   methods: {
     print: function() {
@@ -248,6 +253,7 @@ export default {
       this.updateNo();
       this.updateUrl();
       this.updateTitle();
+      this.$cookies.set(COOKIE_KEYS.OPERATOR, this.operator.KEY);
     },
     updateNo: function() {
       let date = new Date();

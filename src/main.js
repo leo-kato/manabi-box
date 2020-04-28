@@ -3,12 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios' 
-import vuetify from './plugins/vuetify';
-import VueQriously from 'vue-qriously';
+import vuetify from './plugins/vuetify'
+import VueQriously from 'vue-qriously'
+import VueCookies from 'vue-cookies'
 
-Vue.config.productionTip = false;
-Vue.use(VueQriously);
-Vue.prototype.$axios = axios;
+Vue.config.productionTip = false
+Vue.use(VueCookies)
+Vue.use(VueQriously)
+Vue.prototype.$axios = axios
 
 new Vue({
   router,

@@ -148,6 +148,9 @@ const GRADE = {
     KANJI: '握扱依威為偉違緯維壱芋陰隠影鋭越援煙鉛縁汚押奥憶菓暇箇雅介戒皆壊較獲刈甘汗乾勧歓監鑑環含奇祈鬼幾輝儀戯詰却脚及丘朽巨距拠御凶叫狂況狭恐響驚仰駆屈掘繰恵傾継迎撃肩兼剣軒圏堅遣玄枯誇鼓互抗攻更恒荒香項稿豪込婚鎖彩歳載剤咲惨伺刺旨脂紫雌執芝斜煮釈寂朱狩趣需舟秀襲柔獣瞬旬巡盾召沼紹床称詳丈畳殖飾触振震侵浸寝慎薪尽陣尋吹是井姓征跡占扇鮮訴燥騒僧贈即俗耐替沢拓濁脱丹淡嘆端弾恥致遅蓄沖跳徴澄沈珍抵堤摘滴添殿吐途渡奴怒桃逃唐透到倒盗塔稲踏闘胴峠突鈍曇弐悩濃杯輩拍泊迫薄爆髪抜罰販般搬盤範繁彼疲被避尾微匹描浜敏怖浮普腐敷膚賦舞幅払噴柄壁捕舗峰抱砲忙坊肪傍冒帽凡盆慢漫妙眠矛霧娘茂猛網黙紋躍雄与誉溶腰踊謡翼雷頼絡欄離粒慮療隣涙隷齢麗暦劣烈恋露郎惑腕'
   }
 };
+const COOKIE_KEYS = {
+  GRADE: 'materials.Kanji25.grade',
+};
 export default {
   data(){
     return{
@@ -172,13 +175,15 @@ export default {
       console.log(urlParams);
       console.error('不正なURLパラメータ。' + e);
     }
-    this.grade = GRADE[urlParams.grade] || GRADE.K6;
+    let cookieGrade = this.$cookies.get(COOKIE_KEYS.GRADE);
+    this.grade = GRADE[urlParams.grade] || GRADE[cookieGrade] || GRADE.K6;
     this.selGrade = this.grade;
     this.kanji = urlParams.kanji || this.draw(this.grade.KEY);
     this.loadDictionary();
     this.updateNo();
     this.updateUrl();
     this.updateTitle();
+    this.$cookies.set(COOKIE_KEYS.GRADE, this.grade.KEY);
   },
   methods: {
     print: function() {
@@ -199,6 +204,7 @@ export default {
       this.updateNo();
       this.updateUrl();
       this.updateTitle();
+      this.$cookies.set(COOKIE_KEYS.GRADE, this.grade.KEY);
     },
     loadDictionary: function() {
       this.kanji.forEach((k) => {
