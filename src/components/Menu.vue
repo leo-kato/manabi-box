@@ -7,12 +7,12 @@
           <v-card 
             v-for="m in menu"
             :key="m.path"
-            class="ma-2"
+            class="menu-card ma-2"
             :color="m.color"
             :href="m.path"
             dark>
             <v-card-title class="headline">
-              <v-icon class="ma-2">{{ m.icon }}</v-icon>
+              <v-icon class="menu-icon ma-2">{{ m.icon }}</v-icon>
               {{ m.name }}
             </v-card-title>
             <v-card-subtitle>
@@ -35,3 +35,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.menu-card {
+  transition: 1s;
+}
+.menu-card:hover .menu-icon {
+  transform: rotate(360deg);
+}
+</style>
