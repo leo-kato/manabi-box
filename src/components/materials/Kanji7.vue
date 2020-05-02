@@ -290,8 +290,9 @@ export default {
 .kanji-cell {
   width: 80px;
   height: 80px;
-  font-family: 'YuMincho';
   font-size: 64px;
+  font-family: 'YuMincho';
+  color: lightgray;
 	background-size: 100% auto;
 }
 .kanji-cell .kanji{
