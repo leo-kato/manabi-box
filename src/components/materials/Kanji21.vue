@@ -49,9 +49,9 @@
               印刷する
             </v-btn>
             <v-btn 
-              class="mx-2" @dblclick="refresh" small>
+              class="mx-2" @click="refresh" small>
               <v-icon>mdi-refresh</v-icon>
-              漢字を交換(ダブルクリック)
+              漢字を交換
             </v-btn>
           </v-col>
         </v-row>
@@ -149,7 +149,7 @@ const GRADE = {
   }
 };
 const COOKIE_KEYS = {
-  GRADE: 'materials.Kanji25.grade',
+  GRADE: 'materials.Kanji21.grade',
 };
 export default {
   data(){

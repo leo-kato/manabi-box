@@ -1,19 +1,35 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Gallery from '../views/Gallery.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/',
+    path: '/lp',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/',
+    name: 'TemporalGallery',
+    component: Gallery
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: Gallery
   },
   {
     path: '/materials/box100',
     name: 'Box100',
     component: () => import(/* webpackChunkName: "materials_box100" */ '../views/materials/Box100.vue')
+  },
+  {
+    path: '/materials/box100Light',
+    name: 'Box100Light',
+    component: () => import(/* webpackChunkName: "materials_box100light" */ '../views/materials/Box100Light.vue')
   },
   {
     path: '/materials/kanji7',

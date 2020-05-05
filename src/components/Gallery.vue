@@ -30,7 +30,7 @@ import MENU from '@/config/menu.js'
 export default {
   computed: {
     menu: function() {
-      return MENU.LIST;
+      return MENU.GALLERY;
     },
   },
 }
@@ -42,5 +42,21 @@ export default {
 }
 .menu-card:hover .menu-icon {
   transform: rotate(360deg);
+  /* animation: shake .1s linear infinite; */
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-5%);
+  }
+  80% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>

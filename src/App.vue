@@ -1,5 +1,11 @@
 <template>
-  <v-app>
+  <v-app v-if="this.$route.path == '/lp'">
+    <v-content class="main-content">
+      <router-view></router-view>
+    </v-content>
+  </v-app>
+
+  <v-app v-else>
     <v-navigation-drawer v-model="drawer" fixed temporary app>
       <v-container>
         <v-list-item>
@@ -24,8 +30,8 @@
     </v-navigation-drawer>
     <v-app-bar class="d-print-none" color="primary" dark dense app>
       <v-app-bar-nav-icon class="d-none d-sm-flex" @click="drawer=!drawer"></v-app-bar-nav-icon>
-      <v-btn v-if="this.$route.path != '/'" class="d-flex d-sm-none" to="/" icon>   
-         <v-icon>mdi-menu</v-icon>
+      <v-btn v-if="this.$route.path != '/gallery'" class="d-flex d-sm-none" to="/gallery" icon>   
+        <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -40,6 +46,7 @@
         ©︎ Copyright Seekers
       </v-layout>
     </v-footer>
+
   </v-app>
 </template>
 
