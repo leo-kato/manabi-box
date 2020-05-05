@@ -1,5 +1,5 @@
 <template>
-  <v-app v-if="this.$route.path == '/lp'">
+  <v-app v-if="this.$route.path == '/about'">
     <v-content class="main-content">
       <router-view></router-view>
     </v-content>
@@ -57,7 +57,6 @@ export default {
   name: 'App',
   data () {
     return {
-      pageTitle2: 'うちトレ',
       drawer: false,
     }
   },
