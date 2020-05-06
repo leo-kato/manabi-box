@@ -2,8 +2,9 @@
   <v-container class="main-container">
     <section class="page top">
         <h1 class="page-title">うちトレ！！</h1>
-        <p>
-          学習習慣を作ろう！まずは10分の集中力。
+        <p style="text-align:center;">
+          学習習慣を作ろう！まずは10分の集中力。<br>
+          印刷して使える教材集。
         </p>
         <button class="neu-button" type="button" onclick="location.href='./gallery'">
           <span>教材を見る</span>
@@ -234,7 +235,7 @@ button:hover:after {
   background-size: cover;
   background-position: center center;
   color: white;
-  text-shadow: 0 0 3px gray ;
+  text-shadow: 0 0 5px black ;
 }
 .page-title {
   font-size: xx-large;
