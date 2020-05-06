@@ -60,32 +60,7 @@
         <qriously :value="url" :size="120" />
       </v-col>
     </v-row>
-    <v-row class="ml-auto " 
-      justify="end"
-      dense>
-      <v-spacer></v-spacer>
-      <v-col class="d-flex">
-        <v-text-field
-          suffix="月">
-        </v-text-field>
-        <v-text-field
-          suffix="日">
-        </v-text-field>
-      </v-col>
-      <v-col class="d-flex">
-        <v-text-field
-          suffix="分">
-        </v-text-field>
-        <v-text-field
-          suffix="秒">
-        </v-text-field>
-      </v-col>
-      <v-col class="d-flex">
-        <v-text-field
-          suffix="点">
-        </v-text-field>
-      </v-col>
-    </v-row>
+    <BasicInput />
     <v-row 
       class="lighten-5">
       <v-card
@@ -104,6 +79,8 @@
 </template>
 
 <script>
+import BasicInput from '@/components/materials/shared/BasicInput.vue'
+
 const GRADE = {
   K1: {
     KEY: 'K1',
@@ -152,6 +129,9 @@ const COOKIE_KEYS = {
   GRADE: 'materials.Kanji21.grade',
 };
 export default {
+  components: {
+    BasicInput
+  },
   data(){
     return{
         no: 0,

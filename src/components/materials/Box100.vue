@@ -7,7 +7,7 @@
       type="info"
       elevation="2">
       印刷してご利用ください。<br/>
-      「解答を表示/非表示」ボタンから解答付き・なしを切り替えて印刷ができます。
+      「解答を表示/隠す」ボタンから解答付き・なしを切り替えて印刷ができます。
     </v-alert>
     <v-row
       align="center"
@@ -52,7 +52,7 @@
             </v-btn>
             <v-btn class="mx-2" @click="toggleAnswer" small>
               <v-icon>mdi-eye</v-icon>
-              解答を表示/非表示
+              解答を<span v-if="displayAnswer">隠す</span><span v-else>表示</span>
             </v-btn>
             <v-btn 
               class="mx-2" @click="refresh" small>
@@ -68,32 +68,7 @@
         <qriously :value="url" :size="100" />
       </v-col>
     </v-row>
-    <v-row class="ml-auto " 
-      justify="end"
-      dense>
-      <v-spacer></v-spacer>
-      <v-col class="d-flex">
-        <v-text-field
-          suffix="月">
-        </v-text-field>
-        <v-text-field
-          suffix="日">
-        </v-text-field>
-      </v-col>
-      <v-col class="d-flex">
-        <v-text-field
-          suffix="分">
-        </v-text-field>
-        <v-text-field
-          suffix="秒">
-        </v-text-field>
-      </v-col>
-      <v-col class="d-flex">
-        <v-text-field
-          suffix="点">
-        </v-text-field>
-      </v-col>
-    </v-row>
+    <BasicInput />
     <v-row
       class="grey lighten-5">
       <v-col cols="12">
@@ -145,6 +120,8 @@
 </template>
 
 <script>
+import BasicInput from '@/components/materials/shared/BasicInput.vue'
+
 const OPERATORS = {
   ADDITION: {
     KEY: 'ADDITION',
@@ -191,6 +168,9 @@ const COOKIE_KEYS = {
   OPERATOR: 'materials.Box100.operator',
 };
 export default {
+  components: {
+    BasicInput
+  },
   data(){
     return{
         no: 0,
@@ -306,9 +286,6 @@ export default {
   color: #E57373;
 }
 @media screen and (max-width:480px){
-  .box-container {
-    min-width: 480px;
-  }
   .box-cell {
     font-size: smaller;
   }
