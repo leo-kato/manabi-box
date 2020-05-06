@@ -208,6 +208,8 @@ button:hover:after {
 }
 
 .stepper {
+  margin: 0;
+  padding: 0;
   display: flex;
   font-size: smaller;
 }
