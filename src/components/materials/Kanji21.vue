@@ -246,7 +246,7 @@ export default {
 .kanji-cell {
   width: 90px;
   height: 90px;
-  font-family: 'UDDigiKyokasho R', 'YuMincho';
+  font-family: 'YuMincho';
   font-size: 74px;
 	background-size: 100% auto;
 }

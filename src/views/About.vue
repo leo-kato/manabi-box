@@ -1,14 +1,14 @@
 <template>
   <v-container class="main-container">
     <section class="page top">
-        <h1 class="page-title">うちトレ！！</h1>
-        <p style="text-align:center;">
-          学習習慣を作ろう！まずは10分の集中力。<br>
-          印刷して使える教材集。
-        </p>
-        <button class="neu-button" type="button" onclick="location.href='./gallery'">
-          <span>教材を見る</span>
-        </button>
+      <h1 class="page-title">うちトレ！！</h1>
+      <p style="text-align:center;">
+        学習習慣を作ろう！まずは10分の集中力。<br>
+        印刷して使える教材集。
+      </p>
+      <button class="neu-button" type="button" onclick="location.href='./gallery'">
+        <span>教材を見る</span>
+      </button>
     </section>
     <section class="page usage">
       <h2>うちの子、姪っ子、甥っ子のために作りました</h2>
@@ -18,38 +18,39 @@
       </p>
       <h3>3ステップで簡単印刷！</h3>
       <ul class="stepper">
-        <li class="stepper-item">
+        <li>
           <h3>Step1</h3>
-          <p>スマホ/PCで問題を選択</p>
+          <p>スマホ/PCで<span style="display:inline-block;">問題を選択</span></p>
         </li>
-        <li class="stepper-item">
+        <li>
           <h3>Step2</h3>
-          <p>印刷ボタンを押すだけ</p>
+          <p>印刷ボタンを<span style="display:inline-block;">押すだけ</span></p>
         </li>
-        <li class="stepper-item">
+        <li>
           <h3>Step3</h3>
           <p>子供にパス</p>
         </li>
       </ul>
+      <div class="next-vertical"></div>
       <h3>答え合わせは自分で！！</h3>
       <ul class="stepper">
-        <li class="stepper-item">
+        <li>
           <h3>Step1</h3>
-          <p>スマホを渡して</p>
+          <p>スマホを<span style="display:inline-block;">渡して</span></p>
         </li>
-        <li class="stepper-item">
+        <li>
           <h3>Step2</h3>
-          <p>QRコード</p>
+          <p>QRコードを<span style="display:inline-block;">読む</span></p>
         </li>
-        <li class="stepper-item">
+        <li>
           <h3>Step3</h3>
-          <p>自分で採点！</p>
+          <p>自分で<span style="display:inline-block;">採点！</span></p>
         </li>
       </ul>
       <p>
         ランダム出題なので、何回でも使える！<br>
         同じ問題もQRコードから何度でも！！<br>
-        <span style="font-size:smaller;">※同じ問題でいいので、目標時間を決めてやるのが効率的。</span>
+        <small>※同じ問題でOK、目標時間を決めてやるのが効率的。</small>
       </p>
     </section>
     <section class="page problem">
@@ -65,11 +66,8 @@
         小学2年生のうちの子は、簡単なもの（繰り上がりの無い足し算25マス）から始めて、<br>
         1ヶ月後には100マスを10分でできるようになりました。<br>
         勉強以外でも、集中力が増して、習い事でもいい効果が出ています。<br>
-        ぜひ、その子に合うやり方を探してみてください。
-      </p>
-      <p>
-        もし「こんなもの作ってくれたらな」のようなリクエストがあれば <a href="./contact">こちら</a> まで！<br>
-        <span style="font-size:smaller;">※できるかはわかりませんmm</span>
+        ぜひ、その子に合うやり方を探してみてください。<br>
+        <small>※もし「こんなもの作ってくれたらな」のようなリクエストがあれば <a href="./contact">こちら</a> まで！</small>
       </p>
     </section>
     <section class="page example">
@@ -79,37 +77,31 @@
           <h3>うちの子</h3>
           <p class="story-title">25マス計算をやらせてみて、子どもの分からないがやっと分かりました。</p>
           <p class="story-detail">
-            計算が苦手な小学2年の我が子。一人で算数の宿題をやらせてみると
-            何がわからないのかもわからない状態で全く歯が立たない状態。
-            まずは基本の足し算引き算をと思い、100マス計算をやらせてみたが
-            10分かけても100マスを埋められず。終わらないプリントはやばいと
-            思い、繰り上がりの無い25マス計算をやらせてみるとスイスイ出来ました。
-            繰り上がりが苦手な様なので、今は100マスの繰り上がり部分に印を
-            つけて、親子一緒に進めています。目指せ100マス10分切り！
+            計算が苦手な小学2年のうちの子。100マス計算は10分かけても終わらず。
+            モチベーションアップの為、繰り上がりの無い25マス計算をやらせてみるとスイスイ。
+            繰り上がりが苦手なのが分かったので、今は繰り上がり部分に印をつけて親子一緒に進めています。
+            目指せ100マス10分切り！
           </p>
         </li>
         <li class="story-card">
           <h3>姪っ子</h3>
           <p class="story-title">振り返りを繰り返しやる事で、徐々に漢字への苦手意識が無くなってきました。</p>
           <p class="story-detail">
-            数字は得意ですが漢字が苦手な小学3年のウチの子。宿題の漢字は難しすぎて
-            ほとんど手につかない模様。振り返りを意識して、小学1,2年の漢字をいかに
-            丁寧に早くかけるか？をゲーム的にやらせています。
-            最近は漢字への苦手意識が無くなってきたのか、小学3年の漢字を混ぜても
-            気づかず(？)に書いてくれる様になりました。
-            どうしようもなくやる気のない日は、100マス計算で速さの記録更新を狙ってます。
+            数字は得意だが漢字が苦手な小学3年の姪っ子。
+            漢字の宿題は難しすぎてほとんど手につかず。
+            振り返りを意識して、小学1,2年の漢字をいかに丁寧に早くかけるか？をゲーム的にやらせています。
+            漢字への苦手意識が減ってきたのか、小学3年の漢字を混ぜても気づかず(？)に書いてくれる様になったみたいです。
           </p>
         </li>
         <li class="story-card">
           <h3>甥っ子</h3>
           <p class="story-title">パパより速くなったよ！と目を輝かせる息子くん</p>
           <p class="story-detail">
-            文系の私達と違い、数字が大好きな息子くん。
-            試しに100マス計算をやらせてみると、なんと最初から2分ジャストの好成績。
-            よどみなく手が動いていました。試しにパパが競争してみると、15秒ほどしか
-            差がなくてびっくり。息子くんはよっぽど悔しかったみたいで、毎日100マス計算を
-            練習した結果、たった一週間でパパに打ち勝ったらしく、嬉しそうな顔で報告してくれました。
-            一週間で負けたのが悔しかったのか、今はパパが息子くんの記録を追いかける日々です。
+            文系の両親と違い、数字が大好きな小学4年の甥っ子。 
+            100マス計算をパパと競争させてみるとパパ1分45秒に甥っ子が2分の名勝負。
+            甥っ子が悔しがり、毎日100マス計算を練習した結果、
+            たった一週間でパパに打ち勝ったらしく、嬉しそうな顔で報告してくれました。
+            今はパパが100マス特訓中らしいです。
           </p>
         </li>
       </ul>
@@ -118,7 +110,7 @@
       </button>
     </section>
     <footer class="footer">
-      <span>©︎ Copyright Seekers</span>
+      <small>©︎ 2020 Seekers</small>
     </footer>
   </v-container>
 </template>
@@ -148,11 +140,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: smaller;
 }
 .page {
   width: 100%;
-  padding: 32px 32px 64px 32px;
+  padding: 32px 16px 64px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,14 +164,14 @@ button {
   opacity: 0.9;
   border: none;
   border-radius: 24px;
-  box-shadow: 8px 8px 12px rgb(163,177,198,0.6), -8px -8px 12px rgba(255,255,255, 0.5);
+  box-shadow: 4px 4px 8px rgb(163,177,198,0.6), -4px -4px 8px rgba(255,255,255, 0.5);
   padding: 8px 16px;
   color: #4D3252;
   font-weight: 700;
   overflow: hidden;
   position: relative;
 }
-button:after {
+button::after {
   content: "";
   position: absolute;
   top: 0;
@@ -198,7 +189,7 @@ button:after {
     rgba(255, 255, 255, 0.3) 100%
   );
 }
-button:hover:after {
+button:hover::after {
   opacity: 1;
   top: 0;
   left: 0;
@@ -209,24 +200,35 @@ button:hover:after {
 }
 
 .stepper {
-  margin: 0;
+  width: 420px;
+  max-width: 100%;
+  height: 125px;
+  margin: 8px 0;
   padding: 0;
   display: flex;
   font-size: smaller;
 }
-.stepper-item {
+.stepper > li {
   width: 100%;
   margin: 16px 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 50%;
-  box-shadow:  16px 16px 32px #d5d5d5, 
-              -16px -16px 32px #ffffff;
+  box-shadow:  8px 8px 16px #d5d5d5, 
+              -8px -8px 16px #ffffff;
   padding: 8px;
 }
-.stepper-item p {
+.stepper > li p {
   text-align: center;
+}
+.next-vertical {
+  width: 0;
+  height: 0;
+  margin: 8px;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 24px solid #E0E0E0;
 }
 
 /* section */
@@ -239,6 +241,9 @@ button:hover:after {
 }
 .page-title {
   font-size: xx-large;
+}
+.page h2 {
+  margin-bottom: 16px;
 }
 
 .story {
@@ -254,9 +259,8 @@ button:hover:after {
   min-width: 0;
   padding: 1em;
   border-radius: 8px;
-  background: #FAFAFA;
-  box-shadow:  16px 16px 32px #d5d5d5, 
-              -16px -16px 32px #ffffff;
+  box-shadow:  8px 8px 16px #d5d5d5, 
+              -8px -8px 16px #ffffff;
 }
 .story-detail {
   font-size: smaller;

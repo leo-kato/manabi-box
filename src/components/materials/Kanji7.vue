@@ -271,7 +271,7 @@ export default {
   width: 80px;
   height: 80px;
   font-size: 64px;
-  font-family: "UDデジタル教科書体 R", 'YuMincho';
+  font-family: 'YuMincho';
   color: lightgray;
 	background-size: 100% auto;
 }
