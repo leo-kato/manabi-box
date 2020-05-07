@@ -102,8 +102,6 @@
   </v-container>
 </template>
 
-<script type="text/javascript" src="//typesquare.com/3/tsst/script/ja/typesquare.js?5eb3cc6d5ee44bc897992126ac1e0217" charset="utf-8"></script>
-
 <script>
 import BasicInput from '@/components/materials/shared/BasicInput.vue'
 
@@ -273,7 +271,7 @@ export default {
   width: 80px;
   height: 80px;
   font-size: 64px;
-  font-family: 'UDDigiKyokasho R', 'YuMincho';
+  font-family: "UDデジタル教科書体 R", 'YuMincho';
   color: lightgray;
 	background-size: 100% auto;
 }
