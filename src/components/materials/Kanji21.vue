@@ -78,6 +78,8 @@
   </v-container>
 </template>
 
+<script type="text/javascript" src="//typesquare.com/3/tsst/script/ja/typesquare.js?5eb3cc6d5ee44bc897992126ac1e0217" charset="utf-8"></script>
+
 <script>
 import BasicInput from '@/components/materials/shared/BasicInput.vue'
 
@@ -246,7 +248,7 @@ export default {
 .kanji-cell {
   width: 90px;
   height: 90px;
-  font-family: 'YuMincho';
+  font-family: 'UDDigiKyokasho R', 'YuMincho';
   font-size: 74px;
 	background-size: 100% auto;
 }
