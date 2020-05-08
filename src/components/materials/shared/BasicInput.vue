@@ -4,7 +4,7 @@
       justify="end"
       dense>
       <v-spacer></v-spacer>
-      <v-col>
+      <v-col class="py-0">
         <v-text-field
           prefix="名前：">
         </v-text-field>
@@ -13,7 +13,7 @@
     <v-row class="ml-auto " 
       justify="end"
       dense>
-      <v-col class="d-flex">
+      <v-col class="d-flex py-0">
         <v-text-field
           suffix="月">
         </v-text-field>
@@ -25,7 +25,7 @@
           suffix="）">
         </v-text-field>
       </v-col>
-      <v-col class="d-flex">
+      <v-col class="d-flex py-0">
         <v-text-field
           suffix="分">
         </v-text-field>
@@ -33,7 +33,7 @@
           suffix="秒">
         </v-text-field>
       </v-col>
-      <v-col class="d-flex">
+      <v-col class="d-flex py-0">
         <v-text-field
           suffix="点">
         </v-text-field>

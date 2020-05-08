@@ -56,8 +56,8 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col class="ml-auto flex-grow-0 align-center">
-        <qriously :value="url" :size="100" />
+      <v-col class="ml-auto flex-grow-0 align-center ma-0">
+        <qriously :value="url" :size="90" />
       </v-col>
     </v-row>
     <BasicInput />
@@ -268,20 +268,22 @@ export default {
   border-color: black !important;
 }
 .kanji-cell {
-  width: 80px;
-  height: 80px;
-  font-size: 64px;
+  width: 72px;
+  height: 72px;
+  font-size: 56px;
   font-family: 'YuMincho';
   color: lightgray;
 	background-size: 100% auto;
 }
-.kanji-cell .kanji{
-  position: relative;
-  top: -18px;
-  left: 0;
+.kanji-cell .kanji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
 }
 .kanji-detail-cell {
-  height: 80px;
+  height: 72px;
   font-size: x-small;
   overflow: hidden;
 }
@@ -291,17 +293,18 @@ export default {
     height: 60px;
     font-size: 44px;
   }
-  .kanji-cell .kanji{
+  .kanji-cell .kaanji{
     top: -12px;
     left: -1px;
   }
 }
 @media print {
+  .box-container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   .kanji-cell {
     -webkit-print-color-adjust: exact;
-  }
-  .kanji-detail-cell .yomi {
-    /* visibility: hidden; */
   }
 }
 </style>

@@ -249,22 +249,20 @@ export default {
   font-family: 'YuMincho';
   font-size: 74px;
 	background-size: 100% auto;
-}
-.kanji-cell .kanji{
-  position: relative;
-  top: -20px;
-  left: -1px;
   color: lightgray;
+}
+.kanji-cell .kanji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
 }
 @media screen and (max-width:480px){
   .kanji-cell {
     width: 60px;
     height: 60px;
     font-size: 44px;
-  }
-  .kanji-cell .kanji{
-    top: -12px;
-    left: -1px;
   }
 }
 @media print {
