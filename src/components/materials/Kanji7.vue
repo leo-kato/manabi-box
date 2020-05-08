@@ -293,10 +293,6 @@ export default {
     height: 60px;
     font-size: 44px;
   }
-  .kanji-cell .kaanji{
-    top: -12px;
-    left: -1px;
-  }
 }
 @media print {
   .box-container {

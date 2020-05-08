@@ -27,7 +27,7 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "materials_box100" */ '../views/materials/Box100.vue')
   },
   {
-    path: '/materials/box100Light',
+    path: '/materials/box100light',
     name: 'Box100Light',
     component: () => import(/* webpackChunkName: "materials_box100light" */ '../views/materials/Box100Light.vue')
   },
@@ -40,6 +40,11 @@ Vue.use(VueRouter)
     path: '/materials/kanji21',
     name: 'Kanji21',
     component: () => import(/* webpackChunkName: "materials_kanji21" */ '../views/materials/Kanji21.vue')
+  },
+  {
+    path: '/materials/mapjapan',
+    name: 'MapJapan',
+    component: () => import(/* webpackChunkName: "materials_mapjapan" */ '../views/materials/MapJapan.vue')
   },
   {
     path: '/contact',
