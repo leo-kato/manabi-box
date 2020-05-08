@@ -225,7 +225,7 @@ export default {
       this.url = urlBase + '?rows=' + this.rows.toString() + '&cols=' + this.cols.toString() + '&operator=' + this.operator.KEY + '&answer';
     },
     updateTitle: function() {
-      document.title = '100マス計算（light） | ' + this.operator.TEXT + (this.displayAnswer? ' 解答 ' : ' 問題 ') + this.no;
+      document.title = '25マス計算 | ' + this.operator.TEXT + (this.displayAnswer? ' 解答 ' : ' 問題 ') + this.no;
     },
     _randomize: function(array, opt_limit) {//shuffle by Fisher-Yates 
       for (let i = array.length - 1; i > 0; i--) {

@@ -67,8 +67,11 @@
         1ヶ月後には100マスを10分でできるようになりました。<br>
         勉強以外でも、集中力が増して、習い事でもいい効果が出ています。<br>
         ぜひ、その子に合うやり方を探してみてください。<br>
-        <small>※もし「こんなもの作ってくれたらな」のようなリクエストがあれば <a href="./contact">こちら</a> まで！</small>
+        <small>※もし「こんなものがあったらな」のようなリクエストありましたら <a href="./contact">こちら</a> まで！</small>
       </p>
+      <button class="neu-button" type="button" onclick="location.href='./gallery'">
+        <span>教材を試してみる！</span>
+      </button>
     </section>
     <section class="page example">
       <h2>体験談</h2>
