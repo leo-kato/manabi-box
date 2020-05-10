@@ -48,14 +48,14 @@
             </v-btn>
             <v-btn class="mx-2" @click="toggleAnswer" small>
               <v-icon>mdi-eye</v-icon>
-              県庁所在地を<span v-if="displayAnswer">隠す</span><span v-else>表示</span>
+              県庁を<span v-if="displayAnswer">隠す</span><span v-else>表示</span>
             </v-btn>
             <v-btn 
               class="mx-2" @click="refresh" 
               :disabled="!canRefresh"
               small>
               <v-icon>mdi-refresh</v-icon>
-              都道府県を交換
+              県を交換
             </v-btn>
           </v-col>
         </v-row>
