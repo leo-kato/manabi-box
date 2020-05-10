@@ -46,6 +46,10 @@
               <v-icon>mdi-printer</v-icon>
               印刷する
             </v-btn>
+            <v-btn class="mx-2" @click="toggleAnswer" small>
+              <v-icon>mdi-eye</v-icon>
+              県庁所在地を<span v-if="displayAnswer">隠す</span><span v-else>表示</span>
+            </v-btn>
             <v-btn 
               class="mx-2" @click="refresh" 
               :disabled="!canRefresh"
@@ -116,7 +120,7 @@
             style="">
             <v-text-field 
               label="県庁所在地"
-              :value="p.capital_full"
+              :value="displayAnswer ? p.capital_full : ' '"
               prefix="（"
               suffix="）">
             </v-text-field>
@@ -199,6 +203,7 @@ export default {
   data(){
     return{
         no: 0,
+        displayAnswer: true,
         prefectures: [],
         range: RANGE.REGION_RANDOM,
         selRange: RANGE.REGION_RANDOM,
@@ -235,6 +240,9 @@ export default {
     print: function() {
       window.print();
       this.printed = true;
+    },
+    toggleAnswer: function() {
+      this.displayAnswer = !this.displayAnswer;
     },
     switchRange() {
       if (this.range.KEY == this.selRange.KEY) {

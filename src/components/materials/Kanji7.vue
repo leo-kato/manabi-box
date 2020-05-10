@@ -22,7 +22,8 @@
           No. {{ no }}
         </div>
         <div class="overline d-print-none">
-          <div>印刷: {{ printed ? "済み" : "未" }} 
+          <div>
+            印刷: {{ printed ? "済み" : "未" }} 
           </div>
         </div>
       </v-col>
@@ -69,7 +70,8 @@
           :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
           outlined
           tile>
-          <div class="kanji">{{ k }}
+          <div class="kanji">
+            {{ k }}
           </div>
         </v-card>
         <v-card
@@ -210,7 +212,10 @@ export default {
         let url = 'https://mojikiban.ipa.go.jp/mji/q?UCS=0x' + k.charCodeAt(0).toString(16).toUpperCase();
         this.loading = true;
         this.$axios.get(url).then(res => {
-          let detail = {detail: res.data.results[0],onyomi: (res.data.results[0]['読み']['音読み'] || ['ー']).join("、"),kunyomi: (res.data.results[0]['読み']['訓読み'] || ['ー']).join("、"),
+          let detail = {
+            detail: res.data.results[0],
+            onyomi: (res.data.results[0]['読み']['音読み'] || ['ー']).join("、"),
+            kunyomi: (res.data.results[0]['読み']['訓読み'] || ['ー']).join("、"),
           };
           this.$set(this.dictionary, k, detail);
         }).catch(e => {
@@ -265,7 +270,7 @@ export default {
   font-size: 56px;
   font-family: 'YuMincho';
   color: lightgray;
-background-size: 100% auto;
+  background-size: 100% auto;
 }
 .kanji-cell .kanji {
   position: absolute;
