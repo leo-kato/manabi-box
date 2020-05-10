@@ -73,7 +73,7 @@
           align="center"
           justify="start"
           dense>
-          <v-col class="d-flex flex-grow-0 mx-2 pref">
+          <v-col class="d-flex flex-grow-0 mx-1 pref">
             <v-card
               v-for="k in p.pref.split('')"
               :key="k"
@@ -95,7 +95,7 @@
           <v-col 
             v-for="n in 2"
             :key="n"
-            class="d-flex flex-grow-0 mx-2 pref">
+            class="d-flex flex-grow-0 mx-1 pref">
             <v-card
               v-for="k in p.pref.split('')"
               :key="k"
@@ -110,6 +110,16 @@
               outlined
               tile>
             </v-card>
+          </v-col>
+          <v-col 
+            class="d-flex flex-grow-1 mx-1 ">
+            <v-text-field 
+              class="capital"
+              label="県庁所在地"
+              :value="p.capital_full"
+              prefix="（"
+              suffix="）">
+            </v-text-field>
           </v-col>
         </v-row>
       </v-col>
@@ -276,7 +286,6 @@ export default {
     }
   }
 };
-
 </script>
 
 <style scoped>

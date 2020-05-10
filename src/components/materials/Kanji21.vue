@@ -60,7 +60,7 @@
         <qriously :value="url" :size="120" />
       </v-col>
     </v-row>
-    <BasicInput />
+    <BasicInputSingle />
     <v-row 
       class="lighten-5">
       <v-card
@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import BasicInput from '@/components/materials/shared/BasicInput.vue'
+import BasicInputSingle from '@/components/materials/shared/BasicInputSingle.vue'
 
 const GRADE = {
   K1: {
@@ -130,7 +130,7 @@ const COOKIE_KEYS = {
 };
 export default {
   components: {
-    BasicInput
+    BasicInputSingle
   },
   data(){
     return{
