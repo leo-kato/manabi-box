@@ -112,9 +112,9 @@
             </v-card>
           </v-col>
           <v-col 
-            class="d-flex flex-grow-1 mx-1 ">
+            class="d-flex flex-grow-1 mx-1 capital"
+            style="">
             <v-text-field 
-              class="capital"
               label="県庁所在地"
               :value="p.capital_full"
               prefix="（"
@@ -314,11 +314,21 @@ export default {
   -webkit-transform : translate(-50%,-50%);
   transform : translate(-50%,-50%);
 }
+.capital {
+  height: 48px;
+  margin-top: -16px;
+}
 @media screen and (max-width:480px){
   .kanji-cell {
     width: 32px;
     height: 32px;
     font-size: 24px;
+  }
+}
+@media screen and (max-width:558px){
+  .capital {
+    height: inherit;
+    margin-top: inherit;
   }
 }
 @media print {
