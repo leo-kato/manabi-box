@@ -66,8 +66,7 @@
       dense>
       <v-col class="d-flex flex-grow-0 ">
         <v-card
-          class="box-cell kanji-cell flex-grow-0 flex-shrink-0 mx-2 pa-2"
-          :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
+          class="box-cell kanji-cell kanji-model flex-grow-0 flex-shrink-0 mx-2 pa-2"
           outlined
           tile>
           <div class="kanji">
@@ -75,10 +74,17 @@
           </div>
         </v-card>
         <v-card
-          v-for="n in 3"
+          class="box-cell kanji-cell kanji-nazoru flex-grow-0 flex-shrink-0 mx-2 pa-2"
+          outlined
+          tile>
+          <div class="kanji">
+            {{ k }}
+          </div>
+        </v-card>
+        <v-card
+          v-for="n in 2"
           :key="n"
           class="box-cell kanji-cell flex-grow-0 flex-shrink-0 mx-2 pa-2"
-          :style="{ backgroundImage: 'url(' + require('@/assets/images/cell_guideline.png') + ')'}"
           outlined
           tile>
         </v-card>
@@ -269,8 +275,11 @@ export default {
   height: 72px;
   font-size: 56px;
   font-family: 'YuMincho';
-  color: lightgray;
+  background-image: url('./../../assets/images/cell_guideline.png');
   background-size: 100% auto;
+}
+.kanji-cell.kanji-nazoru {
+  color: lightgray;
 }
 .kanji-cell .kanji {
   position: absolute;

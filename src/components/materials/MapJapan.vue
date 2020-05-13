@@ -48,7 +48,7 @@
             </v-btn>
             <v-btn class="mx-2" @click="toggleAnswer" small>
               <v-icon>mdi-eye</v-icon>
-              県庁を<span v-if="displayAnswer">隠す</span><span v-else>表示</span>
+              ヒントを<span v-if="displayAnswer">隠す</span><span v-else>表示</span>
             </v-btn>
             <v-btn 
               class="mx-2" @click="refresh" 
@@ -84,7 +84,7 @@
               class="box-cell kanji-cell flex-grow-0 flex-shrink-0 mx-0"
               outlined
               tile>
-              <div class="kanji">
+              <div class="kanji" v-if="displayAnswer">
                 {{ k }}
               </div>
             </v-card>
@@ -116,14 +116,17 @@
             </v-card>
           </v-col>
           <v-col 
-            class="d-flex flex-grow-1 mx-1 capital"
-            style="">
-            <v-text-field 
-              label="県庁所在地"
-              :value="displayAnswer ? p.capital_full : ' '"
-              prefix="（"
-              suffix="）">
-            </v-text-field>
+            class="flex-grow-1 mx-1 capital align-end">
+            <v-row dense>
+              <small>県庁所在地</small>
+            </v-row>
+            <v-row class="d-flex flex-nowrap" dense>
+              <div class="flex-grow-0">（</div>
+              <div class="flex-grow-1 flex-shrink-1 mx-2 capital-answer">
+                <span v-if="displayAnswer">{{ p.capital_full }}</span>
+              </div>
+              <div class="flex-grow-0">）</div>
+            </v-row>
           </v-col>
         </v-row>
       </v-col>
@@ -323,8 +326,17 @@ export default {
   transform : translate(-50%,-50%);
 }
 .capital {
-  height: 48px;
-  margin-top: -16px;
+  min-width: 120px;
+  min-height: 48px;
+  border-bottom: solid 1px black;
+}
+.capital-answer {
+  font-family: 'YuMincho';
+  color: lightgray;
+  white-space: nowrap;
+}
+input {
+  color: lightgray !important;
 }
 @media screen and (max-width:480px){
   .kanji-cell {
@@ -332,11 +344,8 @@ export default {
     height: 32px;
     font-size: 24px;
   }
-}
-@media screen and (max-width:558px){
   .capital {
-    height: inherit;
-    margin-top: inherit;
+    min-height: 32px;
   }
 }
 @media print {
