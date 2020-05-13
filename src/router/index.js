@@ -1,20 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Sandbox from '../views/sandbox/Home.vue'
 import About from '../views/About.vue'
 import Gallery from '../views/Gallery.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
-  {
-    path: '/about',
-    name: 'About',
-    component: About
-  },
+const routes = [
   { //TODO HOME作ったらHOMEに置き換え
     path: '/',
     name: 'TemporalGallery',
     component: Gallery
+  },
+  {
+    path: '/sandbox',
+    name: 'Sandbox',
+    component: Sandbox
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   },
   {
     path: '/gallery',
