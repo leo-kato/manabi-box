@@ -6,7 +6,8 @@
       colored-border
       type="info"
       elevation="2">
-      印刷してご利用ください。
+      印刷してご利用ください。<br>
+      「ヒントを表示/隠す」ボタンから県名・県庁所在地付き・なしを切り替えて印刷ができます。
     </v-alert>
     <v-row
       align="center"
