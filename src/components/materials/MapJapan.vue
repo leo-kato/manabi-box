@@ -117,7 +117,7 @@
             </v-card>
           </v-col>
           <v-col 
-            class="flex-grow-1 mx-1 capital align-end">
+            class="flex-grow-1 mx-1 capital mx-2">
             <v-row dense>
               <small>県庁所在地</small>
             </v-row>
