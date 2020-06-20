@@ -43,9 +43,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "materials_kanji8" */ '../views/materials/Kanji7.vue')
   },
   {
-    path: '/materials/kanji21',
+    path: '/materials/kanji21',//deprecated
     name: 'Kanji21',
     component: () => import(/* webpackChunkName: "materials_kanji21" */ '../views/materials/Kanji21.vue')
+  },
+  {
+    path: '/materials/kanji7days',
+    name: 'Kanji7Days',
+    component: () => import(/* webpackChunkName: "materials_kanji7days" */ '../views/materials/Kanji7Days.vue')
   },
   {
     path: '/materials/mapjapan',

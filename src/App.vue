@@ -66,7 +66,7 @@ export default {
     },
     pageTitle: function() {
       let navigation = MENU.FULL_LIST.find(n => n.path == this.$route.path);
-      return navigation.pageTitle || navigation.name;
+      return navigation? navigation.pageTitle || navigation.name : "うちトレ！";
     },
   },
 };
