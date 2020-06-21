@@ -60,7 +60,7 @@
       <div class="font-weight-bold">
         {{ s.JUKUGO }}
       </div>
-      <iframe class="worksheet mb-2" :src="s.URL"></iframe>
+      <iframe class="worksheet mb-2" :src="'/sample/kanji7days/' + s.URL"></iframe>
     </v-row>
   </v-container>
 </template>
@@ -84,13 +84,13 @@ const GRADE = {
 const WORK = {
   '一' : {
     KANJI: '一', SHEETS: [ 
-      { JUKUGO: '一日', URL: 'https://drive.google.com/file/d/1ymfFbjYiEiwWdFS7sLJsWRacgCeeqXh_/preview' }, 
-      { JUKUGO: '画一', URL: 'https://drive.google.com/file/d/1EqksuZ2-f7lQbifslELiirdXwm1rWA6J/preview' }, 
+      { JUKUGO: '一矢', URL: '一.pdf' }, 
+      { JUKUGO: '一日', URL: '二.pdf' }, 
     ],
   },
   '二' : {
     KANJI: '二', SHEETS: [ 
-      { JUKUGO: '二日', URL: 'https://drive.google.com/file/d/1EqksuZ2-f7lQbifslELiirdXwm1rWA6J/preview' }, 
+      { JUKUGO: '二日', URL: '二.pdf' }, 
     ],
   },
   '三' : {
@@ -114,6 +114,7 @@ export default {
     }
   },
   created: function(){
+    console.log(process.env.BASE_URL);
     let urlParams = this.$route.query;
     try {
       if ('kanji' in urlParams) {
