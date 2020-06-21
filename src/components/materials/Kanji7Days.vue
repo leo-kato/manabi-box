@@ -57,10 +57,18 @@
       align="center"
       justify="start"
       dense>
-      <div class="font-weight-bold">
+      <div class="font-weight-bold mx-2">
         {{ s.JUKUGO }}
+        <v-btn 
+          class=""
+          @click="print(s.JUKUGO);"
+          small>
+          <v-icon class="mx-2">mdi-printer</v-icon> 印刷する
+        </v-btn>
       </div>
-      <iframe class="worksheet mb-2" :src="'/sample/kanji7days/' + s.URL"></iframe>
+      <div class="worksheet-container mx-2">
+        <iframe :data-jukugo="s.JUKUGO" class="worksheet" :src="'/sample/kanji7days/' + s.URL"></iframe>
+      </div>
     </v-row>
   </v-container>
 </template>
@@ -84,8 +92,8 @@ const GRADE = {
 const WORK = {
   '一' : {
     KANJI: '一', SHEETS: [ 
-      { JUKUGO: '一矢', URL: '一.pdf' }, 
-      { JUKUGO: '一日', URL: '二.pdf' }, 
+      { JUKUGO: '一矢', URL: '二.pdf' }, 
+      { JUKUGO: '一日', URL: '一.pdf' }, 
     ],
   },
   '二' : {
@@ -146,13 +154,27 @@ export default {
     updateTitle: function() {
       document.title = '7日間で新しい漢字を覚えよう！ | ' + this.kanji;
     },
+    print: function(jukugo) {
+      let ifr = document.querySelector('iframe[data-jukugo="' + jukugo +'"]');
+      ifr.focus();
+      ifr.contentWindow.print();
+    },
   }
 };
 </script>
 
 <style scoped>
-.worksheet {
+.worksheet-container {
+  position: relative;
   width: 100%;
-  height: 400px;
+  padding: 71% 0 0 0;
+}
+.worksheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 230mm;
 }
 </style>
