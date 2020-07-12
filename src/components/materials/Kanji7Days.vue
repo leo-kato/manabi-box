@@ -67,7 +67,15 @@
         </v-btn>
       </div>
       <div class="worksheet-container mx-2">
-        <iframe :data-jukugo="s.JUKUGO" class="worksheet" :src="'/sample/kanji7days/' + s.URL"></iframe>
+        <!-- 印刷用 -->
+        <iframe :data-jukugo="s.JUKUGO" class="worksheet" 
+          style="display:none;"
+          :src="'/sample/kanji7days/' + s.URL"></iframe>
+        
+        <object :data-jukugo="s.JUKUGO" class="worksheet"
+          :data="'/sample/kanji7days/' + s.URL" type="application/pdf" width="100%" height="100%">
+          <p><b>表示されない場合はこちらから</b>: <a :href="'/sample/kanji7days/' + s.URL">PDF をダウンロード</a>.</p>
+        </object>
       </div>
     </v-row>
   </v-container>
